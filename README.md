@@ -241,11 +241,17 @@ backend "azurerm" {
 2. Create GitHub workflow
 ## Home work:
 
-Add tags for each resource
+Add tags for each resource:
 * Resource group
-- Log Analytics
-- Container App
-- Container App Environment
+* Log Analytics
+* Container App
+* Container App Environment
+
+Tag values
+* Environment = VSE
+* IaC = terraform
+* Owner = "your name"
+* project = lab-terra-containerapp
 
 ## Future work:
 

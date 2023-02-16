@@ -67,10 +67,10 @@ git config –global –list
   	c. In the search box, type "git.path" and enter the following line in the "Settings" editor and save:  
 	d. "git.path": "C:\\Program Files\\Git\\bin\\git.exe"  
 3. Add Extensions    
-  * Terraform (HashiCorp    
-  * Azure Terraform (Microsoft)  
-  * Gitignore (CodeZombie)   
-  * GitHub Pull Request and Issues   
+   * Terraform (HashiCorp    
+   * Azure Terraform (Microsoft)  
+   * Gitignore (CodeZombie)   
+   * GitHub Pull Request and Issues   
 
 ### Setup Terraform Project
 
@@ -79,14 +79,14 @@ Container App - https://registry.terraform.io/providers/hashicorp/azurerm/latest
 ### Create Terraform Project  
 1. Create a folder called **_lab-terra-containerapp_** in **_c:\\admin\\labs_** 
 2. Create the following files in the folder:   
-  * gitignore (terraform)  
-  * main.tf  (Paste code from Terraform site https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/container_app)
+   * gitignore (terraform)  
+   * main.tf  (Paste code from Terraform site https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/container_app)
 
 Replace Resource Names:  
- * Resource Group:  lab-rg  
- * Log Analytics Workspace:  lab-law   
- * Container App Environment:  lab-cae   
- * Container App:  lab-ca   
+   * Resource Group:  lab-rg  
+   * Log Analytics Workspace:  lab-law   
+   * Container App Environment:  lab-cae   
+   * Container App:  lab-ca   
 
 3. Create a **_providers.tf_** file in **_c:\\admin\\labs\\lab-terra-containerapp_**
 4. Add the following code to the file
@@ -126,10 +126,10 @@ In the Azure portal validate that the resources were created
 
 ### Login to the Azure portal and verify that the following resources are created:
 
-* Resource Group:  **_lab-rg_**
-* Log Analytics Workspace:  **_lab-law_**
-* Container App Environment:  **_lab-cae_**
-* Container App:  **_lab-ca_**
+  * Resource Group:  **_lab-rg_**
+  * Log Analytics Workspace:  **_lab-law_**
+  * Container App Environment:  **_lab-cae_**
+  * Container App:  **_lab-ca_**
 
 ### Test the Application Url for the Container App
 * Azure Portal > Container App > **_lab-ca_** > overview > Application Url

@@ -246,20 +246,11 @@ Add tags for each resource:
     * project = lab-terra-containerapp
 
 ## Future work:
-
 1. Branch the project
 2. Make updates and merge
 3. Create a custom docker container and store in Azure Container Regestry
 4. GitHub actions to deploy the container to the Container App
 
-### Quick Configs
-PowerShell command to update path in the registry
-```powershell
-Set-ItemProperty -Path 'Registry::HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\Environment' `
-  -Name PATH `
-  -Value  (((Get-ItemProperty -Path 'Registry::HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\Environment' -Name PATH).path) + ";c:\admin\terraform" )
-```
 ## References:
-
 Install Terraform on Windows with Bash:  https://learn.microsoft.com/en-us/azure/developer/terraform/get-started-windows-bash?tabs=bash
 Use GitHub Actions to connect to Azure:  https://learn.microsoft.com/en-us/azure/developer/github/connect-from-azure?tabs=azure-portal%2Cwindows#use-the-azure-login-action-with-a-service-principal-secret

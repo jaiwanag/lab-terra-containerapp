@@ -140,7 +140,7 @@ In the Azure portal validate that the resources were created
 * Lists out all the resources that are tracked in the current state file  
 `Terraform state list`  
 * Show the specified resource in the state file  
-`Terraform state show \<resourcename\>`  
+`Terraform state show <resourcename>`  
 
 ### Add output.tf
 1. Create a **_output.tf_**  file in **_c:\\admin\\labs\\lab-terra-containerapp_**
@@ -180,9 +180,9 @@ template {
 
 ### Add terraform.tfvars
 1. Create a **_terraform.tfvars_** file in **_c:\\admin\\labs\\lab-terra-containerapp_**
-2. Add the following code to the file
-`Image = "nginx:latest"`
-3. Commit to source control
+2. Add the following code to the file  
+`Image = "nginx:latest"`  
+3. Commit to source control  
 
 ## Add a Remote Backend for the Terraform State
 

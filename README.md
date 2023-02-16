@@ -263,6 +263,42 @@ Save the output
 }
 ```
 
+/// Create Environmental Variables ///////////////////////////////////////////  
+To set environment variables for your Azure Storage Account, you can follow these steps:
+1. Open Windows PowerShell
+2. Set the environment variables for your Azure Storage Account. You will need to set the following environment variables:
+```
+$env:ARM_CLIENT_ID_KEY="<clientId_key>"
+$env:ARM_SUBSCRIPTION_ID="<subscriptionId>"
+$env:ARM_TENANT_ID="<tenantId>"
+```
+3. After setting the environment variables, you can reference them in your Terraform configuration. Here is an example of what your backend configuration might look like:
+```
+terraform {
+  required_providers {
+    azurerm = {
+      source = "hashicorp/azurerm"
+      version = "3.43.0"
+    }
+  }
+  backend "azurerm" {
+    storage_account_name = "infrasa"
+    container_name = "tfstate"
+    key = "lab-terra-containerapp.tfstate"
+    use_azuread_auth = true
+    client_id = $env:ARM_CLIENT_ID_KEY  //s-DevOps-VSE
+    subscription_id = $env:ARM_SUBSCRIPTION_ID
+    tenant_id = env:ARM_TENANT_ID
+  }
+}
+ 
+provider "azurerm" {
+  features {}
+}
+```
+
+///////////////////////////////////////////////////////////////////////////////  
+
 3. Update the terraform providers.tf file to apply the remote backend  
 _(Note:  it's not best practice to add the client_id, subscription_id, and tenant_id in the providers.tf file)_
 ```yaml

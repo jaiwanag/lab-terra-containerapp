@@ -188,7 +188,7 @@ In the Azure portal validate that the resources were created
 ### Test the Application Url for the Container App
 * Azure Portal > Container App > **_lab-ca_** > overview > Application Url
 
-### View Terraform state
+### View Terraform State
 * Show the state file in a human-readable format  
 `Terraform show`  
 * Lists out all the resources that are tracked in the current state file  

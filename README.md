@@ -243,7 +243,8 @@ template {
 #### Create Azure resources
 1. In the Azure Portal  
    * Create resource group (infra-rg)  
-   * Create storage account (infrasa)   
+   * Create storage account (infrasa)
+    * In the storage account, create a container called **_tfstate_**    
 2. Create Azure AD service principal
 ```powershell
 az ad sp create-for-rbac --name "s-DevOPS-lab" --role contributor `
@@ -288,7 +289,7 @@ terraform {
     use_azuread_auth = true
     client_id = $env:ARM_CLIENT_ID_KEY  //s-DevOps-VSE
     subscription_id = $env:ARM_SUBSCRIPTION_ID
-    tenant_id = env:ARM_TENANT_ID
+    tenant_id = $env:ARM_TENANT_ID
   }
 }
  

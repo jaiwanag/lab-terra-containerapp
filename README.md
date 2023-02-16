@@ -188,8 +188,8 @@ template {
 
 #### Create Azure resources
 1. In the Azure Portal  
-  + Create resource group (infra-rg)  
-  + Create storage account (infrasa)   
+   * Create resource group (infra-rg)  
+   * Create storage account (infrasa)   
 2. Create Azure AD service principal
 ```powershell
 az ad sp create-for-rbac --name "s-DevOPS-lab" --role contributor `

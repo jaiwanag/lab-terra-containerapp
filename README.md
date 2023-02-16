@@ -196,7 +196,7 @@ template {
 	•	Create storage account (infrasa)
 2. Create Azure AD service principal
 ```powershell
-az ad sp create-for-rbac --name 's-DevOPS-lab' --role contributor `
+az ad sp create-for-rbac --name "s-DevOPS-lab" --role contributor `
   --scopes /subscriptions/{subscription-id}/resourceGroups/infra-rg `
   --sdk-auth
 # NOTE:  to get the subscription id:   

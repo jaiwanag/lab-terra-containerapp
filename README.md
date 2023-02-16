@@ -90,7 +90,7 @@ Container App - https://registry.terraform.io/providers/hashicorp/azurerm/latest
 
 3. Create a **_providers.tf_** file in **_c:\\admin\\labs\\lab-terra-containerapp_**
 4. Add the following code to the file
-```yaml
+```json
 terraform {
   required_providers {
     azurerm = {
@@ -106,18 +106,18 @@ provider "azurerm" {
 ```
 
 ### Add to Source Control
-1. Commit to Git
-   a.  Visual Studio Code > Source Code > Initialize Repository
-   b.  Type commit message: first commit 
-2. Commit to GitHub
-   a.  Visual Studio Code > Source Code > Publish Branch
+1. Commit to Git  
+   a.  Visual Studio Code > Source Code > Initialize Repository  
+   b.  Type commit message: first commit  
+2. Commit to GitHub  
+   a.  Visual Studio Code > Source Code > Publish Branch  
 
 ### Terraform initialize, plan, and deploy
 1. Initialize directory, pull down providers  
 `terraform init`
 2. Format code per HCL canonical standard  
 `terraform fmt`  
-3. Preview Terraform deployment  
+3. Preview Terraform deployment  
 `terraform plan`  
 4. Apply the changes with 256 simultaneous resource operations  
 `terraform apply -auto-approve -parallelism=256`  
@@ -145,7 +145,7 @@ In the Azure portal validate that the resources were created
 ### Add output.tf
 1. Create a **_output.tf_**  file in **_c:\\admin\\labs\\lab-terra-containerapp_**
 2. Add the following code to the file
-```yaml
+```json
 output "resource_group_name" {
   description = "Resource group name where the container app is deployed to"
   value       = azurerm_resouse_group.example.name
@@ -156,7 +156,7 @@ output "resource_group_name" {
 ### Add variables.tf
 1. Create a **_variables.tf_**  file in **_c:\\admin\\labs\\lab-terra-containerapps_**
 2. Add the following code to the file
-```yaml
+```json
 variable "image" {
   description = "Container image to be deployed to the container app"
   type        = string
@@ -165,7 +165,7 @@ variable "image" {
 ```
 
 3. Added the variable for the image in the main.tf file
-```yaml
+```json
 template {
   container {
     name   = "examplecontainerapp"
@@ -209,9 +209,9 @@ Save the output
 }
 ```
 
-3. Update the terraform providers.tf file to apply the remote backend
+3. Update the terraform providers.tf file to apply the remote backend  
 _(Note:  it's not best practice to add the client_id, subscription_id, and tenant_id in the providers.tf file)_
-```yaml
+```json
 # Authenticating using Azure AD Authentication of a service principal
 
 backend "azurerm" {
@@ -233,11 +233,11 @@ backend "azurerm" {
 2. Create GitHub workflow
 ## Home work:
 
-### Add tags for each resource:
-* Resource group
-* Log Analytics
-* Container App
-* Container App Environment
+### Add tags for each resource:  
+* Resource group  
+* Log Analytics  
+* Container App  
+* Container App Environment  
 
     #### Tag values:
     * Environment = VSE
@@ -252,5 +252,5 @@ backend "azurerm" {
 4. GitHub actions to deploy the container to the Container App
 
 ## References:
-Install Terraform on Windows with Bash:  https://learn.microsoft.com/en-us/azure/developer/terraform/get-started-windows-bash?tabs=bash
-Use GitHub Actions to connect to Azure:  https://learn.microsoft.com/en-us/azure/developer/github/connect-from-azure?tabs=azure-portal%2Cwindows#use-the-azure-login-action-with-a-service-principal-secret
+Use GitHub Actions to connect to Azure:   
+https://github.com/MicrosoftDocs/azure-docs/blob/main/articles/machine-learning/how-to-github-actions-machine-learning.md  

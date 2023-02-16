@@ -57,16 +57,16 @@ git config –global –list
 ```
 
 ### Configure VS Code
-1. Enable Git
+1. Enable Git  
 	a. Open Visual Studio Code 
  	b. Go to File menu, then Preferences, and then Settings
 	c. In the search box, type “Git: Enabled”, next tick the Check Box to Enable Git
-2. Set Path to Git
+2. Set Path to Git  
   	a. Open Visual Studio Code 
   	b. Go to File menu, then Preferences, and then Settings
   	c. In the search box, type "git.path" and enter the following line in the "Settings" editor and save:  
 	d. "git.path": "C:\\Program Files\\Git\\bin\\git.exe"
-3. Add Extensions
+3. Add Extensions  
   • Terraform (HashiCorp)
   • Azure Terraform (Microsoft)
   • Gitignore (CodeZombie)
@@ -76,7 +76,7 @@ git config –global –list
 
 Container App - https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/container_app
  
-### Create Terraform Project
+### Create Terraform Project  
 1. Create a folder called **_lab-terra-containerapp_** in **_c:\\admin\\labs_**
 2. Create the following files in the folder:
   • gitignore (terraform)

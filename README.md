@@ -239,11 +239,11 @@ Add tags for each resource:
 * Container App
 * Container App Environment
 
-Tag values
-* Environment = VSE
-* IaC = terraform
-* Owner = "your name"
-* project = lab-terra-containerapp
+    Tag values:
+    * Environment = VSE
+    * IaC = terraform
+    * Owner = "your name"
+    * project = lab-terra-containerapp
 
 ## Future work:
 

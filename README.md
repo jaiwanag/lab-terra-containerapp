@@ -5,18 +5,17 @@
 
 # Install Software:
 
-#### Install VSCode
+### Install VSCode
 In PowerShell past the following code:
 `Winget install -e --id Microsoft.VisualStudioCode --source winget`
 
-#### Install Az CLI
+### Install Az CLI
 In PowerShell past the following code:
 `winget install -e --id Microsoft.AzureCLI --source winget`
 
-#### Install Terraform and Configure
+### Install Terraform and Configure
 In PowerShell past the following code:
 ```powershell
-# VSCode - PowerShell
 $url = "https://releases.hashicorp.com/terraform/1.3.9/terraform_1.3.9_windows_386.zip"
 $outputPath = "$env:TEMP\terraform.zip"
 $destinationPath = "C:\admin\terraform"
@@ -41,11 +40,11 @@ Remove-Item $outputPath
 Write-Host "Terraform has been installed to $destinationPath and added to the Windows PATH."
 ```
 
-#### Install Git for Windows
+### Install Git for Windows
 In PowerShell paste the following:
 `winget install -e --id Git.Git --source winget`
 
-#### Configure Git
+### Configure Git
 ```cmd
 # VSCode - PowerShell
 # add user name
@@ -58,7 +57,7 @@ git config --global user.email "email@google.com"
 git config –global –list
 ```
 
-#### Configure VS Code
+### Configure VS Code
 1.	Enable Git
 	a.	Open Visual Studio Code 
 	b.	Go to File menu, then Preferences, and then Settings
@@ -79,7 +78,7 @@ git config –global –list
 
 Container App - https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/container_app
  
-#### Create Terraform Project
+### Create Terraform Project
 1.	Create a folder called lab-terra-containerapp in c:\admin\labs
 2.	Create the following files in the folder:
 	•	gitignore (terraform)
@@ -112,14 +111,14 @@ provider "azurerm" {
 
 ```
 
-#### Add to Source Control
+### Add to Source Control
 1.	Commit to Git
 	a.	Visual Studio Code > Source Code > Initialize Repository
 	b. Type commit message: first commit 
 2.	Commit to GitHub
 	a.	Visual Studio Code > Source Code > Publish Branch
 
-#### Terraform initialize, plan, and deploy
+### Terraform initialize, plan, and deploy
 1. Initialize directory, pull down providers
 `terraform init`
 2. Format code per HCL canonical standard
@@ -131,17 +130,17 @@ provider "azurerm" {
 
 In the Azure portal validate that the resources were created
 
-#### Login to the Azure portal and verify that the following resources are created:
+### Login to the Azure portal and verify that the following resources are created:
 
 * Resource Group:  **_lab-rg_**
 * Log Analytics Workspace:  **_lab-law_**
 * Container App Environment:  **_lab-cae_**
 * Container App:  **_lab-ca_**
 
-#### Test the Application Url for the Container App
+### Test the Application Url for the Container App
 * Azure Portal > Container App > **_lab-ca_** > overview > Application Url
 
-#### View Terraform state
+### View Terraform state
 * Show the state file in a human-readable format.
 `Terraform show`
 * Lists out all the resources that are tracked in the current state file.
@@ -149,7 +148,7 @@ In the Azure portal validate that the resources were created
 * Show the specified resource in the state file.
 `Terraform state show <resourcename> `
 
-#### Add output.tf
+### Add output.tf
 1. Create a output.tf  file in c:\admin\labs\ lab-terra-containerapp
 2. Add the following code to the file
 ```terraform
@@ -160,7 +159,7 @@ output "resource_group_name" {
 ```
 3. Commit to source control
 
-#### Add variables.tf
+### Add variables.tf
 1. Create a **_variables.tf_**  file in `c:\admin\labs\lab-terra-containerapps`
 2. Add the following code to the file
 ```
@@ -185,7 +184,7 @@ template {
 
 4.  Commit to source control
 
-#### Add terraform.tfvars
+### Add terraform.tfvars
 1. Create a terraform.tfvars file in c:\admin\labs\ lab-terra-containerapp
 2. Add the following code to the file
 `Image = "nginx:latest"`
@@ -255,7 +254,7 @@ Add tags for each resource
 3. Create a custom docker container and store in GitHub
 4. GitHub actions to deploy the container to the Container App
 
-#### Quick Configs
+### Quick Configs
 PowerShell command to update path in the registry
 ```powershell
 Set-ItemProperty -Path 'Registry::HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\Environment' `

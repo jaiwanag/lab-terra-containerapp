@@ -90,7 +90,7 @@ Container App - https://registry.terraform.io/providers/hashicorp/azurerm/latest
 
 3. Create a **_providers.tf_** file in **_c:\\admin\\labs\\lab-terra-containerapp_**
 4. Add the following code to the file
-```json
+```
 terraform {
   required_providers {
     azurerm = {
@@ -145,7 +145,7 @@ In the Azure portal validate that the resources were created
 ### Add output.tf
 1. Create a **_output.tf_**  file in **_c:\\admin\\labs\\lab-terra-containerapp_**
 2. Add the following code to the file
-```json
+```yaml
 output "resource_group_name" {
   description = "Resource group name where the container app is deployed to"
   value       = azurerm_resouse_group.example.name
@@ -156,7 +156,7 @@ output "resource_group_name" {
 ### Add variables.tf
 1. Create a **_variables.tf_**  file in **_c:\\admin\\labs\\lab-terra-containerapps_**
 2. Add the following code to the file
-```json
+```yaml
 variable "image" {
   description = "Container image to be deployed to the container app"
   type        = string
@@ -165,7 +165,7 @@ variable "image" {
 ```
 
 3. Added the variable for the image in the main.tf file
-```json
+```yaml
 template {
   container {
     name   = "examplecontainerapp"
@@ -211,7 +211,7 @@ Save the output
 
 3. Update the terraform providers.tf file to apply the remote backend  
 _(Note:  it's not best practice to add the client_id, subscription_id, and tenant_id in the providers.tf file)_
-```json
+```yaml
 # Authenticating using Azure AD Authentication of a service principal
 
 backend "azurerm" {

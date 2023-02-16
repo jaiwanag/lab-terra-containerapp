@@ -78,7 +78,7 @@ git config –global –list
 Container App - https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/container_app
  
 ### Create Terraform Project
-1.	Create a folder called lab-terra-containerapp in c:\admin\labs
+1.	Create a folder called **_lab-terra-containerapp_** in **_c:\admin\labs_**
 2.	Create the following files in the folder:
 	•	gitignore (terraform)
 	•	main.tf
@@ -92,7 +92,7 @@ Replace Resource Names:
 	•	Container App Environment:  lab-cae
 	•	Container App:  lab-ca
 
-3.	Create a providers.tf file in c:\admin\labs\ lab-terra-containerapp
+3.	Create a **_providers.tf_** file in **_c:\admin\labs\lab-terra-containerapp_**
 4.	Add the following code to the file
 ```yaml
 terraform {
@@ -147,7 +147,7 @@ In the Azure portal validate that the resources were created
 `Terraform state show <resourcename> `
 
 ### Add output.tf
-1. Create a output.tf  file in c:\admin\labs\ lab-terra-containerapp
+1. Create a **_output.tf_**  file in c:\admin\labs\ lab-terra-containerapp
 2. Add the following code to the file
 ```yaml
 output "resource_group_name" {
@@ -183,7 +183,7 @@ template {
 4.  Commit to source control
 
 ### Add terraform.tfvars
-1. Create a terraform.tfvars file in c:\admin\labs\ lab-terra-containerapp
+1. Create a **_terraform.tfvars_** file in **_c:\admin\labs\ lab-terra-containerapp_**
 2. Add the following code to the file
 `Image = "nginx:latest"`
 3. Commit to source control

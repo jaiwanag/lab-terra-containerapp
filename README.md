@@ -80,8 +80,8 @@ git config -–global -–list
      * Type "add gitignore" and choose **_terraform_** and press enter
    * main.tf  (Paste code from Terraform site https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/container_app)
    
-   example main.tf
-   ```
+example main.tf
+```
    resource "azurerm_resource_group" "example" {
   name     = "example-resources"
   location = "West Europe"
@@ -116,7 +116,7 @@ resource "azurerm_container_app" "example" {
     }
   }
 }
-   ```
+```
 
    Replace Resource Names:  
    * Resource Group:  lab-rg  

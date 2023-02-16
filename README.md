@@ -135,12 +135,12 @@ In the Azure portal validate that the resources were created
 * Azure Portal > Container App > **_lab-ca_** > overview > Application Url
 
 ### View Terraform state
-* Show the state file in a human-readable format.
-`Terraform show`
-* Lists out all the resources that are tracked in the current state file.
-`Terraform state list`
-* Show the specified resource in the state file.
-`Terraform state show <resourcename> `
+* Show the state file in a human-readable format  
+`Terraform show`  
+* Lists out all the resources that are tracked in the current state file  
+`Terraform state list`  
+* Show the specified resource in the state file  
+`Terraform state show \<resourcename\>`  
 
 ### Add output.tf
 1. Create a **_output.tf_**  file in **_c:\\admin\\labs\\lab-terra-containerapp_**

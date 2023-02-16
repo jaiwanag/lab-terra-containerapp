@@ -58,14 +58,14 @@ git config –global –list
 
 ### Configure VS Code
 1. Enable Git  
-	a. Open Visual Studio Code  
- 	b. Go to File menu, then Preferences, and then Settings  
-	c. In the search box, type “Git: Enabled”, next tick the Check Box to Enable Git  
+   a.  Open Visual Studio Code  
+   b.  Go to File menu, then Preferences, and then Settings  
+   c.  In the search box, type “Git: Enabled”, next tick the Check Box to Enable Git  
 2. Set Path to Git  
-  	a. Open Visual Studio Code 
-  	b. Go to File menu, then Preferences, and then Settings  
-  	c. In the search box, type "git.path" and enter the following line in the "Settings" editor and save:  
-	d. "git.path": "C:\\Program Files\\Git\\bin\\git.exe"  
+   a.  Open Visual Studio Code 
+   b.  Go to File menu, then Preferences, and then Settings  
+   c.  In the search box, type "git.path" and enter the following line in the "Settings" editor and save:  
+   d.  "git.path": "C:\\Program Files\\Git\\bin\\git.exe"  
 3. Add Extensions    
    * Terraform (HashiCorp    
    * Azure Terraform (Microsoft)  
@@ -107,10 +107,10 @@ provider "azurerm" {
 
 ### Add to Source Control
 1. Commit to Git
-  a. Visual Studio Code > Source Code > Initialize Repository
-  b. Type commit message: first commit 
+   a.  Visual Studio Code > Source Code > Initialize Repository
+   b.  Type commit message: first commit 
 2. Commit to GitHub
-  a. Visual Studio Code > Source Code > Publish Branch
+   a.  Visual Studio Code > Source Code > Publish Branch
 
 ### Terraform initialize, plan, and deploy
 1. Initialize directory, pull down providers
@@ -225,7 +225,7 @@ backend "azurerm" {
 }
 ```
 
-4.	Commit to source control
+4. Commit to source control
 
 ## Use GitHub Actions to deploy Terraform
 

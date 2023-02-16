@@ -196,7 +196,7 @@ template {
 	•	Create storage account (infrasa)
 2. Create Azure AD service principal
 ```powershell
-az ad sp create-for-rbac --name s-DevOPS-lab --role contributor `
+az ad sp create-for-rbac --name 's-DevOPS-lab' --role contributor `
   --scopes /subscriptions/{subscription-id}/resourceGroups/infra-rg `
   --sdk-auth
 # NOTE:  to get the subscription id:   
@@ -217,6 +217,7 @@ Save the output
 _(Note:  it's not best practice to add the client_id, subscription_id, and tenant_id in the providers.tf file)_
 ```yaml
 # Authenticating using Azure AD Authentication of a service principal
+
 backend "azurerm" {
   storage_account_name = "vseinfrasa"
   container_name = "tfstate"

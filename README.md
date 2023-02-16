@@ -86,10 +86,10 @@ Paste code from Terraform site
 https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/container_app
 
 Replace Resource Names:  
-	• Resource Group:  lab-rg  
- 	• Log Analytics Workspace:  lab-law   
- 	• Container App Environment:  lab-cae   
- 	• Container App:  lab-ca   
+ • Resource Group:  lab-rg  
+ • Log Analytics Workspace:  lab-law   
+ • Container App Environment:  lab-cae   
+ • Container App:  lab-ca   
 
 3. Create a **_providers.tf_** file in **_c:\\admin\\labs\\lab-terra-containerapp_**
 4. Add the following code to the file
@@ -190,9 +190,9 @@ template {
 ## Add a Remote Backend for the Terraform State
 
 #### Create Azure resources
-1. In the Azure Portal 
-	•	Create resource group (infra-rg)
-	•	Create storage account (infrasa)
+1. In the Azure Portal  
+  • Create resource group (infra-rg)  
+  • Create storage account (infrasa)  
 2. Create Azure AD service principal
 ```powershell
 az ad sp create-for-rbac --name "s-DevOPS-lab" --role contributor `

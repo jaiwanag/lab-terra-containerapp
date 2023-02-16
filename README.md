@@ -82,7 +82,7 @@ Container App - https://registry.terraform.io/providers/hashicorp/azurerm/latest
    * gitignore (terraform)  
    * main.tf  (Paste code from Terraform site https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/container_app)
 
-Replace Resource Names:  
+   Replace Resource Names:  
    * Resource Group:  lab-rg  
    * Log Analytics Workspace:  lab-law   
    * Container App Environment:  lab-cae   

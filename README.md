@@ -110,6 +110,12 @@ provider "azurerm" {
 2. Commit to GitHub  
    a.  Visual Studio Code > Source Code > Publish Branch  
 
+### Login to Azure
+1. Verify that you are logged into Azure and using the correct account:
+`az account show`
+2. To Login to Azure type the following:
+`az login`
+
 ### Terraform initialize, plan, and deploy
 1. Initialize directory, pull down providers  
 `terraform init`

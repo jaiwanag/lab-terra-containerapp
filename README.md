@@ -249,7 +249,7 @@ Add tags for each resource:
 
 1. Branch the project
 2. Make updates and merge
-3. Create a custom docker container and store in GitHub
+3. Create a custom docker container and store in Azure Container Regestry
 4. GitHub actions to deploy the container to the Container App
 
 ### Quick Configs

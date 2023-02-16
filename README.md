@@ -75,7 +75,9 @@ git config -–global -–list
 ### Create The Terraform Project  
 1. Create a folder called **_lab-terra-containerapp_** in **_c:\\admin\\labs_** 
 2. Create the following files in the folder:   
-   * gitignore (terraform)  
+   * gitignore (terraform)
+     * In VS Code open the command palette by pressing the Ctrl+Shift+P keys.
+     * in the input box type "add gitignore" and choose terraform and press enter.
    * main.tf  (Paste code from Terraform site https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/container_app)
 
    Replace Resource Names:  

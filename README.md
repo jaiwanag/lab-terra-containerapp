@@ -113,13 +113,13 @@ provider "azurerm" {
    a.  Visual Studio Code > Source Code > Publish Branch
 
 ### Terraform initialize, plan, and deploy
-1. Initialize directory, pull down providers
+1. Initialize directory, pull down providers  
 `terraform init`
-2. Format code per HCL canonical standard
+2. Format code per HCL canonical standard  
 `terraform fmt`
-3. Preview Terraform deployment
+3. Preview Terraform deployment  
 `terraform plan`
-4. Apply the changes with 256 simultaneous resource operations
+4. Apply the changes with 256 simultaneous resource operations  
 `terraform apply -auto-approve -parallelism=256`
 
 In the Azure portal validate that the resources were created

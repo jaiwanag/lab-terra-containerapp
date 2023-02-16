@@ -53,7 +53,7 @@ git config --global user.name "Your Name"
 git config --global user.email "email@google.com"
 
 # verify
-git config –global –list
+git config -–global -–list
 ```
 
 ### Configure VS Code

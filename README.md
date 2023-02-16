@@ -77,15 +77,15 @@ git config –global –list
 Container App - https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/container_app
  
 ### Create Terraform Project  
-1. Create a folder called **_lab-terra-containerapp_** in **_c:\\admin\\labs_**
-2. Create the following files in the folder:
+1. Create a folder called **_lab-terra-containerapp_** in **_c:\\admin\\labs_** 
+2. Create the following files in the folder: 
   • gitignore (terraform)  
   • main.tf  
 
 Paste code from Terraform site
 https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/container_app
 
-Replace Resource Names:
+Replace Resource Names: 
  • Resource Group:  lab-rg  
  • Log Analytics Workspace:  lab-law  
  • Container App Environment:  lab-cae  

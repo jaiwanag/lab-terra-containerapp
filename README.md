@@ -300,10 +300,11 @@ backend "azurerm" {
     * project = lab-terra-containerapp
 
 ## Future work:
-1. Branch the project
-2. Make updates and merge
-3. Create a custom docker container and store in Azure Container Regestry
-4. GitHub actions to deploy the container to the Container App
+* Add authentication to the container app
+* Branch the project
+* Make updates and merge
+* Create a custom docker container and store in Azure Container Regestry
+* GitHub actions to deploy the container to the Container App
 
 ## References:
 Use GitHub Actions to connect to Azure:   

@@ -58,19 +58,19 @@ git config –global –list
 
 ### Configure VS Code
 1. Enable Git  
-	a. Open Visual Studio Code 
- 	b. Go to File menu, then Preferences, and then Settings
-	c. In the search box, type “Git: Enabled”, next tick the Check Box to Enable Git
+	a. Open Visual Studio Code  
+ 	b. Go to File menu, then Preferences, and then Settings  
+	c. In the search box, type “Git: Enabled”, next tick the Check Box to Enable Git  
 2. Set Path to Git  
   	a. Open Visual Studio Code 
-  	b. Go to File menu, then Preferences, and then Settings
+  	b. Go to File menu, then Preferences, and then Settings  
   	c. In the search box, type "git.path" and enter the following line in the "Settings" editor and save:  
-	d. "git.path": "C:\\Program Files\\Git\\bin\\git.exe"
+	d. "git.path": "C:\\Program Files\\Git\\bin\\git.exe"  
 3. Add Extensions    
-  • Terraform (HashiCorp   
+  • Terraform (HashiCorp    
   • Azure Terraform (Microsoft)  
-  • Gitignore (CodeZombie)  
-  • GitHub Pull Request and Issues  
+  • Gitignore (CodeZombie)   
+  • GitHub Pull Request and Issues   
 
 ### Setup Terraform Project
 
@@ -79,17 +79,17 @@ Container App - https://registry.terraform.io/providers/hashicorp/azurerm/latest
 ### Create Terraform Project  
 1. Create a folder called **_lab-terra-containerapp_** in **_c:\\admin\\labs_**
 2. Create the following files in the folder:
-  • gitignore (terraform)
-  • main.tf
+  • gitignore (terraform)  
+  • main.tf  
 
 Paste code from Terraform site
 https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/container_app
 
 Replace Resource Names:
- • Resource Group:  lab-rg
- • Log Analytics Workspace:  lab-law
- • Container App Environment:  lab-cae
- • Container App:  lab-ca
+ • Resource Group:  lab-rg  
+ • Log Analytics Workspace:  lab-law  
+ • Container App Environment:  lab-cae  
+ • Container App:  lab-ca  
 
 3. Create a **_providers.tf_** file in **_c:\\admin\\labs\\lab-terra-containerapp_**
 4. Add the following code to the file

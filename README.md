@@ -46,7 +46,6 @@ In PowerShell paste the following:
 
 ### Configure Git
 ```bash
-# VSCode - PowerShell
 # add user name
 git config --global user.name "Your Name"
 

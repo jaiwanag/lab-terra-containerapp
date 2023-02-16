@@ -15,7 +15,7 @@ In PowerShell past the following code:
 
 ### Install Terraform and Configure
 In PowerShell past the following code:
-```powershell
+```
 $url = "https://releases.hashicorp.com/terraform/1.3.9/terraform_1.3.9_windows_386.zip"
 $outputPath = "$env:TEMP\terraform.zip"
 $destinationPath = "C:\admin\terraform"

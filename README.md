@@ -170,7 +170,7 @@ variable "image" {
 ```
 
 3. Added the variable for the image in the main.tf file
-```json
+```yaml
 template {
   container {
     name   = "examplecontainerapp"
@@ -211,7 +211,6 @@ Save the output
     "clientSecret": "<GUID>",
     "subscriptionId": "<GUID>",
     "tenantId": "<GUID>",
-    (...)
 }
 ```
 

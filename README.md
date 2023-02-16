@@ -1,7 +1,7 @@
 # Prerequisites:
 
-•	Personal Azure Subscription
-•	Personal GitHub account
+* Personal Azure Subscription
+* Personal GitHub account
 
 # Install Software:
 
@@ -45,7 +45,7 @@ In PowerShell paste the following:
 `winget install -e --id Git.Git --source winget`
 
 ### Configure Git
-```cmd
+```bash
 # VSCode - PowerShell
 # add user name
 git config --global user.name "Your Name"
@@ -95,7 +95,7 @@ Replace Resource Names:
 
 3.	Create a providers.tf file in c:\admin\labs\ lab-terra-containerapp
 4.	Add the following code to the file
-```terraform
+```yaml
 terraform {
   required_providers {
     azurerm = {
@@ -108,7 +108,6 @@ terraform {
 provider "azurerm" {
   features {}
 }
-
 ```
 
 ### Add to Source Control
@@ -151,7 +150,7 @@ In the Azure portal validate that the resources were created
 ### Add output.tf
 1. Create a output.tf  file in c:\admin\labs\ lab-terra-containerapp
 2. Add the following code to the file
-```terraform
+```yaml
 output "resource_group_name" {
   description = "Resource group name where the container app is deployed to"
   value       = azurerm_resouse_group.example.name
@@ -162,7 +161,7 @@ output "resource_group_name" {
 ### Add variables.tf
 1. Create a **_variables.tf_**  file in `c:\admin\labs\lab-terra-containerapps`
 2. Add the following code to the file
-```
+```yaml
 variable "image" {
   description = "Container image to be deployed to the container app"
   type        = string
@@ -171,7 +170,7 @@ variable "image" {
 ```
 
 3. Added the variable for the image in the main.tf file
-```
+```json
 template {
   container {
     name   = "examplecontainerapp"
@@ -197,17 +196,16 @@ template {
 	•	Create resource group (infra-rg)
 	•	Create storage account (infrasa)
 2. Create Azure AD service principal
-```powershell
+```bash
 az ad sp create-for-rbac --name s-DevOPS-lab --role contributor \
   --scopes /subscriptions/{subscription-id}/resourceGroups/infra-rg \
   --sdk-auth
 # NOTE:  to get the subscription id:   
 az account show 
-
 ```
 
 Save the output
-```
+```json
 {
     "clientId": "<GUID>",
     "clientSecret": "<GUID>",
@@ -215,12 +213,11 @@ Save the output
     "tenantId": "<GUID>",
     (...)
 }
-
 ```
 
 3. Update the terraform providers.tf file to apply the remote backend
 _(Note:  it's not best practice to add the client_id, subscription_id, and tenant_id in the providers.tf file)_
-```
+```yaml
 // Authenticating using Azure AD Authentication of a service principal
 backend "azurerm" {
   storage_account_name = "vseinfrasa"

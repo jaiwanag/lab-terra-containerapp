@@ -195,7 +195,7 @@ template {
 	•	Create resource group (infra-rg)
 	•	Create storage account (infrasa)
 2. Create Azure AD service principal
-```powershell
+```shell
 az ad sp create-for-rbac --name s-DevOPS-lab --role contributor \
   --scopes /subscriptions/{subscription-id}/resourceGroups/infra-rg \
   --sdk-auth
@@ -215,7 +215,7 @@ Save the output
 
 3. Update the terraform providers.tf file to apply the remote backend
 _(Note:  it's not best practice to add the client_id, subscription_id, and tenant_id in the providers.tf file)_
-```json
+```yaml
 # Authenticating using Azure AD Authentication of a service principal
 backend "azurerm" {
   storage_account_name = "vseinfrasa"

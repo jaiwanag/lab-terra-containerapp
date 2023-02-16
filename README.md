@@ -124,6 +124,17 @@ resource "azurerm_container_app" "example" {
    * Log Analytics Workspace:  **_lab-law_**     
    * Container App Environment:  **_lab-cae_**     
    * Container App:  **_lab-ca_**    
+   
+   Add Ingress to the azurerm_container_app resourse, place under the **_revision_mode_** line:
+   ```
+   ingress {    
+     target_port = 80    
+     external_enabled = true    
+     traffic_weight {      
+       percentage = 100    
+     }  
+   }
+   ```
 
 3. Create a **_providers.tf_** file in **_c:\\admin\\labs\\lab-terra-containerapp_**
 4. Add the following code to the file

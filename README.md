@@ -118,8 +118,8 @@ resource "azurerm_container_app" "example" {
 }
 ```
 
-   Update the parameters:
-   * Resource labels: **_lab_**  
+   Update the valuse:
+   * Do a find and replace of all instances of **_example_** with **_lab_**  
    * Resource Group:  **_lab-rg_**   
    * Log Analytics Workspace:  **_lab-law_**     
    * Container App Environment:  **_lab-cae_**     
@@ -191,7 +191,7 @@ In the Azure portal validate that the resources were created
 ```yaml
 output "resource_group_name" {
   description = "Resource group name where the container app is deployed to"
-  value       = azurerm_resouse_group.example.name
+  value       = azurerm_resource_group.example.name
 }
 ```
 3. Commit to source control

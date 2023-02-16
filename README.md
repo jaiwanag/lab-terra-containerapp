@@ -1,10 +1,10 @@
-## Prerequisites:
----
+# Prerequisites:
+
 •	Personal Azure Subscription
 •	Personal GitHub account
 
-## Install Software:
----
+# Install Software:
+
 #### Install VSCode
 In PowerShell past the following code:
 `Winget install -e --id Microsoft.VisualStudioCode --source winget`
@@ -76,7 +76,7 @@ git config –global –list
 
 
 ### Setup Terraform Project
-___
+
 Container App - https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/container_app
  
 #### Create Terraform Project
@@ -191,8 +191,8 @@ template {
 `Image = "nginx:latest"`
 3. Commit to source control
 
-### Add a Remote Backend for the Terraform State
----
+## Add a Remote Backend for the Terraform State
+
 #### Create Azure resources
 1. In the Azure Portal 
 	•	Create resource group (infra-rg)
@@ -236,20 +236,20 @@ backend "azurerm" {
 
 4.	Commit to source control
 
-### Use GitHub Actions to deploy Terraform
----
+## Use GitHub Actions to deploy Terraform
+
 1. Create GitHub secret (use information from the saved service principal output)
 2. Create GitHub workflow
-### Home work:
----
+## Home work:
+
 Add tags for each resource
 * Resource group
 - Log Analytics
 - Container App
 - Container App Environment
 
-### Future work:
----
+## Future work:
+
 1. Branch the project
 2. Make updates and merge
 3. Create a custom docker container and store in GitHub

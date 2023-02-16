@@ -85,11 +85,11 @@ Container App - https://registry.terraform.io/providers/hashicorp/azurerm/latest
 Paste code from Terraform site
 https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/container_app
 
-Replace Resource Names: 
- • Resource Group:  lab-rg  
- • Log Analytics Workspace:  lab-law  
- • Container App Environment:  lab-cae  
- • Container App:  lab-ca  
+Replace Resource Names:  
+	• Resource Group:  lab-rg  
+ 	• Log Analytics Workspace:  lab-law   
+ 	• Container App Environment:  lab-cae   
+ 	• Container App:  lab-ca   
 
 3. Create a **_providers.tf_** file in **_c:\\admin\\labs\\lab-terra-containerapp_**
 4. Add the following code to the file

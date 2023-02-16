@@ -79,6 +79,44 @@ git config -–global -–list
      * In VS Code open the command palette by pressing the **_Ctrl+Shift+P_** keys
      * Type "add gitignore" and choose **_terraform_** and press enter
    * main.tf  (Paste code from Terraform site https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/container_app)
+   
+   example main.tf
+   ```
+   resource "azurerm_resource_group" "example" {
+  name     = "example-resources"
+  location = "West Europe"
+}
+
+resource "azurerm_log_analytics_workspace" "example" {
+  name                = "acctest-01"
+  location            = azurerm_resource_group.example.location
+  resource_group_name = azurerm_resource_group.example.name
+  sku                 = "PerGB2018"
+  retention_in_days   = 30
+}
+
+resource "azurerm_container_app_environment" "example" {
+  name                       = "Example-Environment"
+  location                   = azurerm_resource_group.example.location
+  resource_group_name        = azurerm_resource_group.example.name
+  log_analytics_workspace_id = azurerm_log_analytics_workspace.example.id
+}
+resource "azurerm_container_app" "example" {
+  name                         = "example-app"
+  container_app_environment_id = azurerm_container_app_environment.example.id
+  resource_group_name          = azurerm_resource_group.example.name
+  revision_mode                = "Single"
+
+  template {
+    container {
+      name   = "examplecontainerapp"
+      image  = "mcr.microsoft.com/azuredocs/containerapps-helloworld:latest"
+      cpu    = 0.25
+      memory = "0.5Gi"
+    }
+  }
+}
+   ```
 
    Replace Resource Names:  
    * Resource Group:  lab-rg  

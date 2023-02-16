@@ -65,7 +65,7 @@ git config –global –list
    a.  Open Visual Studio Code 
    b.  Go to File menu, then Preferences, and then Settings  
    c.  In the search box, type "git.path" and enter the following line in the "Settings" editor:  
-      * git.path: `C:\\Program Files\\Git\\bin\\git.exe`
+      * git.path: **_`C:\\Program Files\\Git\\bin\\git.exe`_**
 3. Add Extensions    
    * Terraform (HashiCorp    
    * Azure Terraform (Microsoft)  

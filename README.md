@@ -233,7 +233,7 @@ backend "azurerm" {
 2. Create GitHub workflow
 ## Home work:
 
-Add tags for each resource:
+### Add tags for each resource:
 * Resource group
 * Log Analytics
 * Container App

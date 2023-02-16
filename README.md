@@ -264,7 +264,7 @@ Save the output
 }
 ```
 
-/// Create Environmental Variables ////////////////////////////////////////// 
+/// Create Environmental Variables /////////////////////////////////////////
 To set environment variables for your Azure Storage Account, you can follow these steps:
 1. Open Windows PowerShell
 2. Set the environment variables for your Azure Storage Account. You will need to set the following environment variables:

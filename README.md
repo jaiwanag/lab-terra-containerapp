@@ -82,7 +82,7 @@ git config -–global -–list
    
 example main.tf
 ```
-   resource "azurerm_resource_group" "example" {
+resource "azurerm_resource_group" "example" {
   name     = "example-resources"
   location = "West Europe"
 }
@@ -118,11 +118,12 @@ resource "azurerm_container_app" "example" {
 }
 ```
 
-   Replace Resource Names:  
-   * Resource Group:  lab-rg  
-   * Log Analytics Workspace:  lab-law   
-   * Container App Environment:  lab-cae   
-   * Container App:  lab-ca   
+   Update the parameters:
+   * Resource labels: **_lab_**  
+   * Resource Group:  **_lab-rg_**   
+   * Log Analytics Workspace:  **_lab-law_**     
+   * Container App Environment:  **_lab-cae_**     
+   * Container App:  **_lab-ca_**    
 
 3. Create a **_providers.tf_** file in **_c:\\admin\\labs\\lab-terra-containerapp_**
 4. Add the following code to the file

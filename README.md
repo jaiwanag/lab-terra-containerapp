@@ -41,7 +41,7 @@ Write-Host "Terraform has been installed to $destinationPath and added to the Wi
 ```
 
 ### Install Git for Windows
-In PowerShell paste the following:
+In PowerShell paste the following:  
 `winget install -e --id Git.Git --source winget`
 
 ### Configure Git
@@ -116,11 +116,11 @@ provider "azurerm" {
 1. Initialize directory, pull down providers  
 `terraform init`
 2. Format code per HCL canonical standard  
-`terraform fmt`
+`terraform fmt`  
 3. Preview Terraform deployment  
-`terraform plan`
+`terraform plan`  
 4. Apply the changes with 256 simultaneous resource operations  
-`terraform apply -auto-approve -parallelism=256`
+`terraform apply -auto-approve -parallelism=256`  
 
 In the Azure portal validate that the resources were created
 

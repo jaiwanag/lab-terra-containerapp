@@ -15,7 +15,7 @@ In PowerShell past the following code:
 
 ### Install Terraform and Configure
 In PowerShell past the following code:
-```
+```powershell
 $url = "https://releases.hashicorp.com/terraform/1.3.9/terraform_1.3.9_windows_386.zip"
 $outputPath = "$env:TEMP\terraform.zip"
 $destinationPath = "C:\admin\terraform"
@@ -81,7 +81,7 @@ git config -–global -–list
    * main.tf  (Paste code from Terraform site https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/container_app)
    
 example main.tf
-```
+```yaml
 resource "azurerm_resource_group" "example" {
   name     = "example-resources"
   location = "West Europe"
@@ -138,7 +138,7 @@ resource "azurerm_container_app" "example" {
 
 3. Create a **_providers.tf_** file in **_c:\\admin\\labs\\lab-terra-containerapp_**
 4. Add the following code to the file
-```
+```yaml
 terraform {
   required_providers {
     azurerm = {

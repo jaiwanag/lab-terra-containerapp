@@ -289,7 +289,6 @@ Invoke-Expression -Command $myCode
 2. In the PowerShell terminal type:  
 `$sp`
 3. Save the output and remove the following lines, we'll need this later to configure the GitHub secret
-> **_Note: this file contains sensitive information_**  
 ```json
   "activeDirectoryEndpointUrl": "",
   "resourceManagerEndpointUrl": "",
@@ -307,6 +306,7 @@ Your saved file should look like this:
   "tenantId": "xxxxxxxxxx",
 }
 ```
+> **_Note: This file contains sensitive information, and should stored in a secure location!!!_**  
 
 #### Configure Terraform to use the Azure storage account as the backend
 1. Create a new file named **_lab-terra-containerapp.tfbackend_** in your Terraform working directory

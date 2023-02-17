@@ -442,8 +442,15 @@ jobs:
 
 ```
 
-This code sets up a GitHub Actions workflow to deploy an Azure infrastructure using Terraform. It runs on push to the main branch and includes steps to download Terraform, log in to Azure, and generate a Terraform plan. The plan is then archived as an artifact and used to apply the changes to the Azure infrastructure.
+This code sets up a GitHub Actions workflow to deploy an Azure infrastructure using Terraform. It downloads Terraform, log in to Azure, and generate a Terraform plan. The plan is then archived as an artifact and used to apply the changes to the Azure infrastructure.
 5. Commit to source control
+
+### Manually trigger the GitHub action
+The GitHub Actions is set to use the **_workflow_dispatch_** event in the **_actions-lab-terra-containerapp.yaml_** file. This event allows you to run the workflow by clicking a button in the Actions tab of your **lab-terra-containerapp.yaml_** repository.
+
+#### To manually trigger the workflow
+1. Go to the "Actions" tab of the **lab-terra-containerapp.yaml_** repository, click on the name of the workflow, and then click the "Run workflow" button.
+2. After completion of the action, goto your Azure portal and verify created resources.
 
 ## Home work:
 

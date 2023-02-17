@@ -248,7 +248,7 @@ template {
   * Grant the service principal **_Storage Blob Data Owner_** permissions to the storage account
 
 1. Past the following code in a PowerShell terminal to create the resources above
-```
+```powershell
 $myCode = @"
 # Set the region and resource group name
 `$region = "westus"
@@ -290,7 +290,7 @@ Invoke-Expression -Command $myCode
 `$sp`
 3. Save the output then remove the following lines, we'll need this later to configuring the GitHub secret
 > **_Note: this file contains sensitive information_**  
-```
+```json
   "activeDirectoryEndpointUrl": "",
   "resourceManagerEndpointUrl": "",
   "activeDirectoryGraphResourceId": "",

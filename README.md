@@ -391,10 +391,10 @@ This will be used to pass the contents of the TF_BACKEND_CONFIG secret as the ba
 ```yaml
 name: Terraform Azure Deployment
 
-on:
-  push:
-    branches:
-      - main
+#on:
+#  push:
+#    branches:
+#      - main
 
 jobs:
   deploy:

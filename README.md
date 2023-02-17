@@ -342,7 +342,7 @@ provider "azurerm" {
 }
 ```
 4. Run **_terraform_** **_init_** in your working directory to initialize the backend and download any required plugins  
-`terraform init -backend-config=aca-terraform.vse.tfbackend`
+`terraform init -backend-config=aca-terraform.tfbackend`
 5. Add the `*.tfbackend` extension to your gitgnore file
 6. Commit to source control
 

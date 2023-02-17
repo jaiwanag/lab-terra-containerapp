@@ -240,40 +240,82 @@ template {
 
 ## Add a Remote Backend for the Terraform State
 
-#### Create Azure resources
-1. In the Azure Portal  
-   * Create resource group (infra-rg)  
-   * Create storage account (infrasa)
-    * In the storage account, create a container called **_tfstate_**    
-2. Create Azure AD service principal
-```powershell
-az ad sp create-for-rbac --name "s-DevOPS-lab" --role contributor `
-  --scopes /subscriptions/{subscription_id}/resourceGroups/infra-rg `
-  --sdk-auth
-# NOTE:  to get the subscription id:   
-az account show 
-```
+#### Create Azure resources:
+* Create resource group (infra-rg)  
+* Create storage account (infrasa)
+  * In the storage account, create a container called **_tfstate_**   
+* Create Azure AD service principal
+  * Grant the service principal **_Storage Blob Data Owner_** permissions to the storage account
 
-Save the output
+1. Past the following code in a PowerShell terminal to create the resources above
+```
+$myCode = @"
+# Set the region and resource group name
+`$region = "westus"
+`$resourceGroupName = "infra-rg"
+`$spName = "s-DevOps-lab"
+
+# Generate a random 3-digit number and append it to the storage account name
+`$randomNumber = Get-Random -Minimum 100 -Maximum 1000
+`$storageAccountName = "infrasa`$randomNumber"
+
+# Get the subscription ID
+`$subscriptionId = az account show --query id -o tsv
+
+# Create the resource group
+az group create --name $resourceGroupName --location $region
+
+# Create the storage account in the resource group
+az storage account create --name $storageAccountName --resource-group $resourceGroupName --location $region --sku Standard_LRS
+
+# Create a container in the storage account
+az storage container create --name ftstate --account-name $storageAccountName
+
+# Create a service principal with contributor access to the subscription
+`$sp = az ad sp create-for-rbac --name $spName --role contributor --scopes /subscriptions/$subscriptionId --sdk-auth -o tsv
+
+# Get the service principal's ID
+`$appId = az ad sp show --id $(az ad sp list --display-name $spName --query '[].appId' -o tsv) --query appId -o tsv
+
+# Grant the account Storage Blob Data Owner to the storage account
+az role assignment create --assignee $appId --role `"Storage Blob Data Owner`" --scope /subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/Microsoft.Storage/storageAccounts/$storageAccountName
+
+# Output the contents of `$sp
+`$sp
+"@
+
+Invoke-Expression -Command $myCode
+```
+2. In the PowerShell terminal type: $sp
+3. Save the output then remove the following lines, we'll need this to configuring the GitHub secret
+> **_Note: this file contains sensitive information_**  
+```
+  "activeDirectoryEndpointUrl": "",
+  "resourceManagerEndpointUrl": "",
+  "activeDirectoryGraphResourceId": "",
+  "sqlManagementEndpointUrl": "",
+  "galleryEndpointUrl": "",
+  "managementEndpointUrl": "" 
+```
+Your saved file should look like this:
 ```json
 {
-    "clientId": "<GUID>",
-    "clientSecret": "<GUID>",
-    "subscriptionId": "<GUID>",
-    "tenantId": "<GUID>",
+  "clientId": "xxxxxxxxxx",
+  "clientSecret": "xxxxxxxxxx",
+  "subscriptionId": "xxxxxxxxxx",
+  "tenantId": "xxxxxxxxxx",
 }
 ```
 
-/// Create Environmental Variables /////////////////////////////////////////
-To set environment variables for your Azure Storage Account, you can follow these steps:
-1. Open Windows PowerShell
-2. Set the environment variables for your Azure Storage Account. You will need to set the following environment variables:
+#### Configure Terraform to use the Azure storage account as the backend
+1. Create a new file named **_lab-terra-containerapp.tfbackend_** in your Terraform working directory
+2. Add the following contents to the file, replacing the placeholders with your actual values:
+```json
+client_id = "<clientid>"
+subscription_id = "<subscriptionId>"
+tenant_id = "<tenantId>"
 ```
-$env:ARM_CLIENT_ID_KEY="<clientId_key>"
-$env:ARM_SUBSCRIPTION_ID="<subscriptionId>"
-$env:ARM_TENANT_ID="<tenantId>"
-```
-3. After setting the environment variables, you can reference them in your Terraform configuration. Here is an example of what your backend configuration might look like:
+3. Update the terraform **_providers.tf_** file with the **_backend_** configuration. This tells Terraform to use the azurerm backend, and to load the configuration from the lab-terra-containerapp.tfbackend file. Here's an example of what your backend configuration will look like:
 ```
 terraform {
   required_providers {
@@ -287,9 +329,7 @@ terraform {
     container_name = "tfstate"
     key = "lab-terra-containerapp.tfstate"
     use_azuread_auth = true
-    client_id = $env:ARM_CLIENT_ID_KEY  //s-DevOps-VSE
-    subscription_id = $env:ARM_SUBSCRIPTION_ID
-    tenant_id = $env:ARM_TENANT_ID
+    //Note:  confidential values are stored in the .tfbackend file
   }
 }
  
@@ -297,26 +337,9 @@ provider "azurerm" {
   features {}
 }
 ```
-
-///////////////////////////////////////////////////////////////////////////////  
-
-3. Update the terraform providers.tf file to apply the remote backend  
-_(Note:  it's not best practice to add the client_id, subscription_id, and tenant_id in the providers.tf file)_
-```yaml
-# Authenticating using Azure AD Authentication of a service principal
-
-backend "azurerm" {
-  storage_account_name = "vseinfrasa"
-  container_name = "tfstate"
-  key = "lab-terra-containerapp.tfstate"
-  use_azuread_auth = true
-  client_id = "<GUID>" 
-  subscription_id = "<GUID>" 
-  tenant_id = "<GUID>" 
-}
-```
-
-4. Commit to source control
+4. Run **_terraform_** **_init_** in your working directory to initialize the backend and download any required plugins  
+`terraform init -backend-config=aca-terraform.vse.tfbackend`
+5. Commit to source control
 
 ## Use GitHub Actions to deploy Terraform
 

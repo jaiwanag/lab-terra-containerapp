@@ -311,7 +311,7 @@ Your saved file should look like this:
 #### Configure Terraform to use the Azure storage account as the backend
 1. Create a new file named **_lab-terra-containerapp.tfbackend_** in your Terraform working directory
 2. Add the following contents to the file, replacing the placeholders with your actual values:
-```json
+```yaml
 client_id = "<clientid>"
 subscription_id = "<subscriptionId>"
 tenant_id = "<tenantId>"

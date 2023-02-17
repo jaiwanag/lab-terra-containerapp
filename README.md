@@ -347,8 +347,92 @@ provider "azurerm" {
 
 ## Use GitHub Actions to deploy Terraform
 
-1. Create GitHub secret (use information from the saved service principal output)
-2. Create GitHub workflow
+### Create GitHub secrets
+AZURE_CREDENTIALS
+(use the information from the saved service principal output)
+1. Go to your GitHub repository and navigate to the "Settings" tab.
+2. Click on "Secrets" on the left-hand side.
+3. Click on "New repository secret".
+4. In the "Name" field, enter a name for the secret, such as "AZURE_CREDENTIALS".
+5. In the "Value" field, paste in the JSON object:
+```json
+{
+"clientId": "xxxxxxxxxx",
+"clientSecret": "xxxxxxxxxx",
+"subscriptionId": "xxxxxxxxxx",
+"tenantId": "xxxxxxxxxx"
+}
+```
+6. Click on "Add secret"
+Now you have created a GitHub secret for Azure using the provided JSON object. You can use this secret in your GitHub Actions workflows to authenticate and interact with your Azure resources.
+
+TF_BACKEND_CONFIG
+1. Create a new secret in your GitHub repository by going to "Settings" > "Secrets" and clicking on "New secret".
+2. Name the secret TF_BACKEND_CONFIG and paste the contents of your lab-terra-containerapp.tfbackend file as the value. 
+
+    The contents should look this.
+```yaml
+client_id = "xxxxxxxxxx"
+subscription_id = "xxxxxxxxxx"
+tenant_id = "xxxxxxxxxx"
+```
+3. Click on "Add secret"
+
+This will be used to pass the contents of the TF_BACKEND_CONFIG secret as the backend-config parameter to the terraform init command in the workflow.
+
+### Create GitHub workflow
+This code sets up a GitHub Actions workflow to deploy an Azure infrastructure using Terraform. It runs on push to the main branch and includes steps to download Terraform, log in to Azure, and generate a Terraform plan. The plan is then archived as an artifact and used to apply the changes to the Azure infrastructure.
+```yaml
+name: Terraform Azure Deployment
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Download Terraform
+      run: |
+        curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
+        sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
+        sudo apt-get update && sudo apt-get install terraform
+
+    - name: Azure Login
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    - name: Get Azure AD token
+      id: ad-login
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+      run: echo "Token: ${{ steps.ad-login.outputs.access-token }}"
+
+    - name: Terraform Init
+      run: terraform init -backend-config=<(echo "$TF_BACKEND_CONFIG")
+
+    - name: Terraform Plan
+      run: terraform plan -out=tfplan
+
+    - name: Archive Terraform Plan
+      uses: actions/upload-artifact@v2
+      with:
+        name: tfplan
+        path: tfplan
+
+    - name: Terraform Apply
+      if: success() && github.event_name == 'push'
+      run: terraform apply -auto-approve tfplan
+
+```
 ## Home work:
 
 ### Add tags for each resource:  

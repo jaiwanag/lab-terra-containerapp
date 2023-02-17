@@ -288,7 +288,7 @@ Invoke-Expression -Command $myCode
 ```
 2. In the PowerShell terminal type:  
 `$sp`
-3. Save the output then remove the following lines, we'll need this to configuring the GitHub secret
+3. Save the output then remove the following lines, we'll need this later to configuring the GitHub secret
 > **_Note: this file contains sensitive information_**  
 ```
   "activeDirectoryEndpointUrl": "",

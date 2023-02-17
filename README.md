@@ -300,18 +300,7 @@ $newJson = ($sp | ConvertFrom-Json) |
 # Show output
 $newJson
 ```
-2. In the PowerShell terminal type:  
-`$sp`
-3. Save the output and remove the following lines, we'll need this later to configure the GitHub secret
-```json
-  "activeDirectoryEndpointUrl": "",
-  "resourceManagerEndpointUrl": "",
-  "activeDirectoryGraphResourceId": "",
-  "sqlManagementEndpointUrl": "",
-  "galleryEndpointUrl": "",
-  "managementEndpointUrl": "" 
-```
-Your saved file should look like this:
+2. An output like the one below will be displayed. Copy and save it to a secure location.
 ```json
 {
   "clientId": "xxxxxxxxxx",

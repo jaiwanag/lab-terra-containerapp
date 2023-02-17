@@ -317,7 +317,7 @@ subscription_id = "<subscriptionId>"
 tenant_id = "<tenantId>"
 ```
 3. Update the terraform **_providers.tf_** file with the **_backend_** configuration. This tells Terraform to use the azurerm backend, and to load the configuration from the lab-terra-containerapp.tfbackend file. Here's an example of what your backend configuration will look like:
-```
+```yaml
 terraform {
   required_providers {
     azurerm = {

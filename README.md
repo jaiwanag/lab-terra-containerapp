@@ -118,7 +118,7 @@ resource "azurerm_container_app" "example" {
 }
 ```
 
-   Update the values:
+   Update the main.tf file with values below:
    * Do a find and replace of all instances of **_example_** with **_lab_**  
    * Resource Group:  **_lab-rg_**   
    * Log Analytics Workspace:  **_lab-law_**     

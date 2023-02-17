@@ -286,7 +286,8 @@ az role assignment create --assignee $appId --role `"Storage Blob Data Owner`" -
 
 Invoke-Expression -Command $myCode
 ```
-2. In the PowerShell terminal type: $sp
+2. In the PowerShell terminal type:  
+`$sp`
 3. Save the output then remove the following lines, we'll need this to configuring the GitHub secret
 > **_Note: this file contains sensitive information_**  
 ```

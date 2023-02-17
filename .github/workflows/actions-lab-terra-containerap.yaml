@@ -1,0 +1,48 @@
+name: Terraform Azure Deployment
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Download Terraform
+      run: |
+        curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
+        sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
+        sudo apt-get update && sudo apt-get install terraform
+
+    - name: Azure Login
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    - name: Get Azure AD token
+      id: ad-login
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+      run: echo "Token: ${{ steps.ad-login.outputs.access-token }}"
+
+    - name: Terraform Init
+      run: terraform init -backend-config=<(echo "$TF_BACKEND_CONFIG")
+
+    - name: Terraform Plan
+      run: terraform plan -out=tfplan
+
+    - name: Archive Terraform Plan
+      uses: actions/upload-artifact@v2
+      with:
+        name: tfplan
+        path: tfplan
+
+    - name: Terraform Apply
+      if: success() && github.event_name == 'push'
+      run: terraform apply -auto-approve tfplan

@@ -381,8 +381,13 @@ tenant_id = "xxxxxxxxxx"
 
 This will be used to pass the contents of the TF_BACKEND_CONFIG secret as the backend-config parameter to the terraform init command in the workflow.
 
-### Create GitHub workflow
-This code sets up a GitHub Actions workflow to deploy an Azure infrastructure using Terraform. It runs on push to the main branch and includes steps to download Terraform, log in to Azure, and generate a Terraform plan. The plan is then archived as an artifact and used to apply the changes to the Azure infrastructure.
+### Create GitHub Action
+1.Create a .github/workflows directory in the lab-terra-containerapp repository on GitHub
+1. In the lab-terra-containerapp project in VS Code.  Create a folder call .github
+2. In the .github folder create a folder called workflows
+3. In the workflows folder create a file called `actions-lab-terra-containerapp.yaml`
+4. Copy and paste the code below into the yaml file and save
+
 ```yaml
 name: Terraform Azure Deployment
 
@@ -434,6 +439,10 @@ jobs:
       run: terraform apply -auto-approve tfplan
 
 ```
+
+This code sets up a GitHub Actions workflow to deploy an Azure infrastructure using Terraform. It runs on push to the main branch and includes steps to download Terraform, log in to Azure, and generate a Terraform plan. The plan is then archived as an artifact and used to apply the changes to the Azure infrastructure.
+5. Commit to source control
+
 ## Home work:
 
 ### Add tags for each resource:  

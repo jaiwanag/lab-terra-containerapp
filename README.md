@@ -437,7 +437,7 @@ jobs:
         path: tfplan
 
     - name: Terraform Apply
-      if: success() && github.event_name == 'push'
+      #if: success() && github.event_name == 'push'
       run: terraform apply -auto-approve tfplan
 
 ```

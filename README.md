@@ -263,28 +263,42 @@ $myCode = @"
 `$subscriptionId = az account show --query id -o tsv
 
 # Create the resource group
-az group create --name $resourceGroupName --location $region
+az group create --name `$resourceGroupName --location `$region
 
 # Create the storage account in the resource group
-az storage account create --name $storageAccountName --resource-group $resourceGroupName --location $region --sku Standard_LRS
+az storage account create --name `$storageAccountName --resource-group `$resourceGroupName --location `$region --sku Standard_LRS
 
 # Create a container in the storage account
-az storage container create --name ftstate --account-name $storageAccountName
+az storage container create --name ftstate --account-name `$storageAccountName
 
 # Create a service principal with contributor access to the subscription
-`$sp = az ad sp create-for-rbac --name $spName --role contributor --scopes /subscriptions/$subscriptionId --sdk-auth -o tsv
+`$sp = az ad sp create-for-rbac --name `$spName --role contributor --scopes /subscriptions/`$subscriptionId --sdk-auth -o tsv
 
 # Get the service principal's ID
-`$appId = az ad sp show --id $(az ad sp list --display-name $spName --query '[].appId' -o tsv) --query appId -o tsv
+`$appId = az ad sp show --id `$(az ad sp list --display-name `$spName --query '[].appId' -o tsv) --query appId -o tsv
 
 # Grant the account Storage Blob Data Owner to the storage account
-az role assignment create --assignee $appId --role `"Storage Blob Data Owner`" --scope /subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/Microsoft.Storage/storageAccounts/$storageAccountName
+az role assignment create --assignee `$appId --role `"Storage Blob Data Owner`" --scope /subscriptions/`$subscriptionId/resourceGroups/`$resourceGroupName/providers/Microsoft.Storage/storageAccounts/`$storageAccountName
 
 # Output the contents of `$sp
-`$sp
+#`$sp
 "@
 
+# Run the variable with PowerShell
 Invoke-Expression -Command $myCode
+
+# Filter values
+$newJson = ($sp | ConvertFrom-Json) | 
+  Select-Object -ExcludeProperty activeDirectoryEndpointUrl, `
+  resourceManagerEndpointUrl, `
+  activeDirectoryGraphResourceId, `
+  sqlManagementEndpointUrl, `
+  galleryEndpointUrl, `
+  managementEndpointUrl | 
+  ConvertTo-Json
+
+# Show output
+$newJson
 ```
 2. In the PowerShell terminal type:  
 `$sp`

@@ -126,7 +126,7 @@ resource "azurerm_container_app" "example" {
    * Container App:  **_lab-ca_**    
    
    Add Ingress to the **_azurerm_container_app_** resource, place under the **_revision_mode_** line:
-   ```
+   ```yaml
    ingress {    
      target_port = 80    
      external_enabled = true    

@@ -8,6 +8,12 @@ The lab outlines the steps to install and configure the necessary software and t
 
 # Install Software:
 
+### Software to install:
+* VS Code
+* Azure CLI
+* Terraform
+* Git for Windows
+
 ### Install VSCode
 In PowerShell past the following code:
 `Winget install -e --id Microsoft.VisualStudioCode --source winget`

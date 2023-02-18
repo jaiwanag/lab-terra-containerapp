@@ -447,7 +447,8 @@ jobs:
       run: terraform apply -auto-approve tfplan
 ```
 
-This code sets up a GitHub Actions workflow to deploy an Azure infrastructure using Terraform. It downloads Terraform, log in to Azure, and generate a Terraform plan. The plan is then archived as an artifact and used to apply the changes to the Azure infrastructure.
+> This code sets up a GitHub Actions workflow to deploy an Azure infrastructure using Terraform. It downloads Terraform, log in to Azure, and generate a Terraform plan. The plan is then archived as an artifact and used to apply the changes to the Azure infrastructure.
+
 5. Commit to source control
 
 ### Manually trigger the GitHub action

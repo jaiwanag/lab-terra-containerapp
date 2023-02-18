@@ -246,6 +246,7 @@ template {
   * In the storage account, create a container called **_tfstate_**   
 * Create Azure AD service principal
   * Grant the service principal **_Storage Blob Data Owner_** permissions to the storage account
+  * Grant the service principal **_contributor_** permissions to the subscription.
 
 1. Past the following code in a PowerShell terminal to create the resources above
 ```powershell
@@ -279,6 +280,9 @@ az storage container create --name ftstate --account-name `$storageAccountName
 
 # Grant the account Storage Blob Data Owner to the storage account
 az role assignment create --assignee `$appId --role `"Storage Blob Data Owner`" --scope /subscriptions/`$subscriptionId/resourceGroups/`$resourceGroupName/providers/Microsoft.Storage/storageAccounts/`$storageAccountName
+
+# Grant the account contributor to the subscription
+az role assignment create --assignee `$appId --role `"Contributor`" --scope /subscriptions/`$subscriptionId
 
 # Output the contents of `$sp
 #`$sp

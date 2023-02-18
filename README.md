@@ -1,3 +1,6 @@
+# Summary
+The lab outlines the steps to install and configure the necessary software and tools to create a Terraform project for deploying a container application in Azure.
+
 # Prerequisites:
 
 * Personal Azure Subscription

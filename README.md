@@ -1,5 +1,18 @@
 # Summary
-The lab outlines the steps to install and configure the necessary software and tools to create a Terraform project for deploying a container application in Azure.
+This lab outlines the steps to install and configure the necessary software and tools to create a Terraform project for learing Infrastructure as Code (IaC) and source control (Git/GitHub).  This project uses IaC to deploy a container app in Azure.
+
+### Skills that will be learned:
+1. Creating a Terraform project  
+   * main.tf
+   * providers.tf
+   * output.tf
+   * variables.tf
+2. Adding source control to the project
+   * committing code
+3. Use Terraform to deploy Azure resources from your computer
+   * making changes or updating the deployed Azure resources 
+4. Store the Terraform state in an Azure storage account
+5. Use GitHub Actions to automate the deployment of Azure resources
 
 # Prerequisites:
 
@@ -362,13 +375,14 @@ provider "azurerm" {
 ## Use GitHub Actions to deploy Terraform
 
 ### Create GitHub secrets
-AZURE_CREDENTIALS
+AZURE_CREDENTIALS  
 (use the information from the saved service principal output)
 1. Go to your GitHub repository and navigate to the "Settings" tab.
 2. Click on "Secrets" on the left-hand side.
 3. Click on "New repository secret".
 4. In the "Name" field, enter a name for the secret, such as "AZURE_CREDENTIALS".
 5. In the "Value" field, paste in the JSON object:
+
 ```json
 {
 "clientId": "xxxxxxxxxx",

@@ -2,17 +2,23 @@
 This lab outlines the steps to install and configure the necessary software and tools to create a Terraform project for learing Infrastructure as Code (IaC) and source control (Git/GitHub).  This project uses IaC to deploy a container app in Azure.
 
 ### Skills that will be learned:
-1. Creating a Terraform project  
-   * main.tf
-   * providers.tf
-   * output.tf
-   * variables.tf
-2. Adding source control to the project
+1. Azure
+   * Using the Azure Portal
+   * Container Apps
+1. Terraform 
+   * Create a project
+   * Deploy resources to Azure from your computer
+   * How to store the Terraform state remotely in Azure
+   * Make changes or updating the deployed Azure resources
+2. Use VS Code as an IDE to develope code
+   * adding extension
+   * work with the terminal 
+2. Source Control
+   * Use Git/GitHub
+   * using gitignore
    * committing code
-3. Use Terraform to deploy Azure resources from your computer
-   * making changes or updating the deployed Azure resources 
-4. Store the Terraform state in an Azure storage account
-5. Use GitHub Actions to automate the deployment of Azure resources
+5. Automation
+  * GitHub Actions to automate the deployment of Azure resources
 
 # Prerequisites:
 

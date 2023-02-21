@@ -134,9 +134,15 @@ resource "azurerm_container_app" "example" {
 }
 ```
 
-   Update the main.tf file with values below:
-   * Do a find and replace of all instances of **_example_** with **_lab_**  
-   * Resource Group:  **_lab-rg_**   
+   In VS Code customize the main.tf file by doing a find and replace of all references listed below:  
+   **Labels:**
+   * Find: **_example_** Replace: **_lab_**   
+   
+   **Location:**   
+   * Find: **_West Europe_** Replace: **_West US_**  
+   
+   **Resource Group:**  
+   * Find: **_"example-resources"_** Replace: **_lab-rg_**   
    * Log Analytics Workspace:  **_lab-law_**     
    * Container App Environment:  **_lab-cae_**     
    * Container App:  **_lab-ca_**    

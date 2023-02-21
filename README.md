@@ -100,7 +100,7 @@ example main.tf
 ```yaml
 resource "azurerm_resource_group" "example" {
   name     = "example-resources"
-  location = "West Europe"
+  location = "West US"
 }
 
 resource "azurerm_log_analytics_workspace" "example" {
@@ -142,15 +142,15 @@ resource "azurerm_container_app" "example" {
    * Container App:  **_lab-ca_**    
    
    Add the Ingress code block to the **_azurerm_container_app_** resource, the block should be placed under the **_revision_mode_** line:
-   ```yaml
-   ingress {    
-     target_port = 80    
-     external_enabled = true    
-     traffic_weight {      
-       percentage = 100    
-     }  
-   }
-   ```
+```yaml
+ingress {    
+  target_port = 80    
+  external_enabled = true    
+  traffic_weight {      
+    percentage = 100    
+    }  
+  }
+```
 3. Create a **_providers.tf_** file in **_c:\\admin\\labs\\lab-terra-containerapp_**
 4. Add the following code to the file
 ```yaml
@@ -211,7 +211,7 @@ In the Azure portal validate that the resources were created
 ```yaml
 output "resource_group_name" {
   description = "Resource group name where the container app is deployed to"
-  value       = azurerm_resource_group.example.name
+  value       = azurerm_resource_group.lab.name
 }
 ```
 3. Commit to source control
@@ -220,9 +220,9 @@ output "resource_group_name" {
 2. Add the following code to the file
 ```yaml
 variable "image" {
-  description = "Container image to be deployed to the container app"
-  type        = string
-  default     = "mcr.microsoft.com/azuredocs/containerapps-helloworld:latest"
+  description = "Container image to be deployed to the container app"
+  type        = string
+  default     = "mcr.microsoft.com/azuredocs/containerapps-helloworld:latest"
 }
 ```
 3. Added the variable for the image in the main.tf file
@@ -273,7 +273,7 @@ az group create --name `$resourceGroupName --location `$region
 az storage account create --name `$storageAccountName --resource-group `$resourceGroupName --location `$region --sku Standard_LRS
 
 # Create a container in the storage account
-az storage container create --name ftstate --account-name `$storageAccountName
+az storage container create --name tfstate --account-name `$storageAccountName
 
 # Create a service principal with contributor access to the subscription
 `$sp = az ad sp create-for-rbac --name `$spName --role contributor --scopes /subscriptions/`$subscriptionId --sdk-auth -o tsv

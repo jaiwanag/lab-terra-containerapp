@@ -134,18 +134,25 @@ resource "azurerm_container_app" "example" {
 }
 ```
 
-   In VS Code customize the main.tf file by doing a find and replace of all references listed below:  
-   **Labels:**
-   * Find: **_example_** Replace: **_lab_**   
-   
+   ### In VS Code, customize the main.tf file by doing a find and replace of all references listed below:  
+    
    **Location:**   
-   * Find: **_West Europe_** Replace: **_West US_**  
+     * Find: **_West Europe_** Replace: **_West US_**  
    
    **Resource Group:**  
-   * Find: **_"example-resources"_** Replace: **_lab-rg_**   
-   * Log Analytics Workspace:  **_lab-law_**     
-   * Container App Environment:  **_lab-cae_**     
-   * Container App:  **_lab-ca_**    
+     * Find: **_example-resources_** Replace: **_lab-rg_**   
+   
+   **Log Analytics Workspace:**
+     * Find: **_acctest-01_** Replace: **_lab-law_**     
+   
+   **Container App Environment:**  
+     * Find: **_Example-Environment_** Replace: **_lab-cae_**     
+   
+   **Container App:**  
+     * Find: **_examplecontainerapp_** Replace: **_lab-ca_**    
+
+   **Labels:**    
+       * Find: **_example_** Replace: **_lab_**        
    
    Add the Ingress code block to the **_azurerm_container_app_** resource, the block should be placed under the **_revision_mode_** line:
 ```yaml

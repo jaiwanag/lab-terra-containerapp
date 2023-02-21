@@ -152,7 +152,7 @@ resource "azurerm_container_app" "example" {
      * Find: **_examplecontainerapp_** Replace: **_lab-ca_**    
 
    **Labels:**    
-       * Find: **_example_** Replace: **_lab_**        
+     * Find: **_example_** Replace: **_lab_**        
    
    Add the Ingress code block to the **_azurerm_container_app_** resource, the block should be placed under the **_revision_mode_** line:
 ```yaml

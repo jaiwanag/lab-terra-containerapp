@@ -143,9 +143,9 @@ resource "azurerm_container_app" "example" {
 }
 ```
    * providers.tf  
-   Paste code from Terraform site https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/container_app
+   Paste code from Terraform site https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/container_app and add `features {}` in the **_azurerm_** code block
    
-    The code should look like this:
+     The code should look like this:
 ```yaml
 terraform {
   required_providers {

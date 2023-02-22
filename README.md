@@ -103,7 +103,7 @@ git config -–global -–list
      * In VS Code open the command palette by pressing the **_Ctrl+Shift+P_** keys
      * Type "add gitignore" and select it, then type **_terraform_** and select it
    * main.tf  
-   Paste code from Terraform site https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/container_app
+   Paste the code from Terraform site https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/container_app
 
 example main.tf  
 ```yaml
@@ -143,7 +143,7 @@ resource "azurerm_container_app" "example" {
 }
 ```
    * providers.tf  
-   Paste code from Terraform site https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/container_app and add `features {}` in the **_azurerm_** code block
+   Paste the providers code from Terraform site https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/container_app and add `features {}` in the **_azurerm_** code block
    
      The code should look like this:
 ```yaml

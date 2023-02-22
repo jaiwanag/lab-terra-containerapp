@@ -87,7 +87,7 @@ git config -–global -–list
    c.  In the search box, type "git.path" and enter the following line in the "Settings" editor:  
       * git.path: **_`C:\\Program Files\\Git\\bin\\git.exe`_**
 3. Add Extensions    
-   * Terraform (HashiCorp    
+   * Terraform (HashiCorp)      
    * Azure Terraform (Microsoft)  
    * Gitignore (CodeZombie)   
    * GitHub Pull Request and Issues   

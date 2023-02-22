@@ -101,10 +101,11 @@ git config -–global -–list
 2. Create the following files in the folder:   
    * gitignore
      * In VS Code open the command palette by pressing the **_Ctrl+Shift+P_** keys
-     * Type "add gitignore" and choose **_terraform_** and press enter
-   * main.tf  (Paste code from Terraform site https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/container_app)
+     * Type "add gitignore" and select it, then type **_terraform_** and select it
+   * main.tf  
+   (Paste code from Terraform site https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/container_app)
 
-example main.tf
+example main.tf  
 ```yaml
 resource "azurerm_resource_group" "example" {
   name     = "example-resources"
@@ -141,6 +142,24 @@ resource "azurerm_container_app" "example" {
   }
 }
 ```
+   * providers.tf  
+   (Paste code from Terraform site https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/container_app)
+   
+    The code should look like this:
+```yaml
+terraform {
+  required_providers {
+    azurerm = {
+      source = "hashicorp/azurerm"
+      version = "3.44.1"
+    }
+  }
+}
+ 
+provider "azurerm" {
+  features {}
+}
+```
 
    ### In VS Code, customize the main.tf file by doing a find and replace of all references listed below:  
     
@@ -171,22 +190,6 @@ ingress {   
     percentage = 100    
     }  
   }
-```
-3. Create a **_providers.tf_** file in **_c:\\admin\\labs\\lab-terra-containerapp_**
-4. Add the following code to the file
-```yaml
-terraform {
-  required_providers {
-    azurerm = {
-      source = "hashicorp/azurerm"
-      version = "3.44.1"
-    }
-  }
-}
- 
-provider "azurerm" {
-  features {}
-}
 ```
 
 ### Add to Source Control

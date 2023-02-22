@@ -30,13 +30,13 @@ This lab outlines the steps to install and configure the necessary software and 
 * Terraform
 * Git for Windows
 ### Install VSCode
-In PowerShell past the following code:  
+In PowerShell terminal and paste the following code:  
 `Winget install -e --id Microsoft.VisualStudioCode --source winget`
 ### Install Az CLI
-In PowerShell past the following code:  
+In PowerShell terminal paste the following code:  
 `winget install -e --id Microsoft.AzureCLI --source winget`
 ### Install Terraform and Configure
-In PowerShell past the following code:
+In PowerShell terminal paste the following code:
 ```powershell
 $url = "https://releases.hashicorp.com/terraform/1.3.9/terraform_1.3.9_windows_386.zip"
 $outputPath = "$env:TEMP\terraform.zip"
@@ -48,6 +48,11 @@ Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope CurrentUser -Force
 # Create the Terraform folder if it doesn't already exist
 if (-not (Test-Path $destinationPath)) {
     New-Item -ItemType Directory -Path $destinationPath | Out-Null
+}
+
+# Create the labs folder is it doesn't already exist
+if (-not (Test-Path "c:\admin\labs\lab-terra-containerapp")) {
+    New-Item -ItemType Directory -Path "c:\admin\labs\lab-terra-containerapp" | Out-Null
 }
  
 # Add the Terraform folder to the Windows PATH if it's not already there
@@ -65,7 +70,7 @@ Remove-Item $outputPath
 Write-Host "Terraform has been installed to $destinationPath and added to the Windows PATH."
 ```
 ### Install Git for Windows
-In PowerShell paste the following:  
+In PowerShell terminal paste the following:  
 `winget install -e --id Git.Git --source winget`
 ### Configure Git
 ```bash
@@ -92,7 +97,7 @@ git config -–global -–list
    * Gitignore (CodeZombie)   
    * GitHub Pull Request and Issues   
 ### Create The Terraform Project  
-1. Create a folder called **_lab-terra-containerapp_** in **_c:\\admin\\labs_** 
+1. In VS Code do a `Ctrl+Shift+E` to open the **_Explorer_** and navigate to `c:\admin\labs\lab-terra-containerapp` folder   
 2. Create the following files in the folder:   
    * gitignore
      * In VS Code open the command palette by pressing the **_Ctrl+Shift+P_** keys

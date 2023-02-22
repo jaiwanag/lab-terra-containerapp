@@ -30,10 +30,10 @@ This lab outlines the steps to install and configure the necessary software and 
 * Terraform
 * Git for Windows
 ### Install VSCode
-In PowerShell past the following code:
+In PowerShell past the following code:  
 `Winget install -e --id Microsoft.VisualStudioCode --source winget`
 ### Install Az CLI
-In PowerShell past the following code:
+In PowerShell past the following code:  
 `winget install -e --id Microsoft.AzureCLI --source winget`
 ### Install Terraform and Configure
 In PowerShell past the following code:
@@ -142,14 +142,14 @@ resource "azurerm_container_app" "example" {
    **Resource Group:**  
      * Find: **_example-resources_** Replace: **_lab-rg_**   
    
-   **Log Analytics Workspace:**
+   **Log Analytics Workspace:**  
      * Find: **_acctest-01_** Replace: **_lab-law_**     
    
    **Container App Environment:**  
      * Find: **_Example-Environment_** Replace: **_lab-cae_**     
    
    **Container App:**  
-     * Find: **_examplecontainerapp_** Replace: **_lab-ca_**    
+     * Find: **_example-app_** Replace: **_lab-ca_**    
 
    **Labels:**    
      * Find: **_example_** Replace: **_lab_**        

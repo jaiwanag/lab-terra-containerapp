@@ -1,4 +1,4 @@
-# Summary
+# Summary1
 This lab outlines the steps to install and configure the necessary software and tools to create a Terraform project for learing Infrastructure as Code (IaC) and source control (Git/GitHub).  This project uses IaC to deploy a container app in Azure.
 
 ### Skills that will be learned:

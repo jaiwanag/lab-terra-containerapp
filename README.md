@@ -25,10 +25,14 @@ This lab outlines the steps to install and configure the necessary software and 
 * Personal GitHub account
 # Install Software:
 ### Software to install:
+* PowerShell 7.3.2 or greater
 * VS Code
 * Azure CLI
 * Terraform
 * Git for Windows
+### Install PowerShell if below 7.3.2  
+In the PowerShell terminal type `pwsh`.  If there's is an error or the version is below **_7.3.2_**, type `winget install --id Microsoft.Powershell --source winget` to install the latest version of PowerShell.
+
 ### Install VSCode
 In PowerShell terminal and paste the following code:  
 `Winget install -e --id Microsoft.VisualStudioCode --source winget`
@@ -183,13 +187,13 @@ provider "azurerm" {
    
    Add the Ingress code block to the **_azurerm_container_app_** resource, the block should be placed under the **_revision_mode_** line:
 ```yaml
-ingress {    
-  target_port = 80    
-  external_enabled = true    
-  traffic_weight {      
-    percentage = 100    
-    }  
+ingress {
+  target_port = 80
+  external_enabled = true
+  traffic_weight {
+    percentage = 100
   }
+}
 ```
 
 ### Add to Source Control

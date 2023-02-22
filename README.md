@@ -41,7 +41,10 @@ In PowerShell past the following code:
 $url = "https://releases.hashicorp.com/terraform/1.3.9/terraform_1.3.9_windows_386.zip"
 $outputPath = "$env:TEMP\terraform.zip"
 $destinationPath = "C:\admin\terraform"
- 
+
+# Set PowerShell policy
+Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope CurrentUser -Force
+
 # Create the Terraform folder if it doesn't already exist
 if (-not (Test-Path $destinationPath)) {
     New-Item -ItemType Directory -Path $destinationPath | Out-Null

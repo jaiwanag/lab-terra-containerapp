@@ -1,4 +1,4 @@
-# Summary1
+# Summary
 This lab outlines the steps to install and configure the necessary software and tools to create a Terraform project for learing Infrastructure as Code (IaC) and source control (Git/GitHub).  This project uses IaC to deploy a container app in Azure.
 
 ### Skills that will be learned:
@@ -99,7 +99,8 @@ git config -–global -–list
    * Terraform (HashiCorp)      
    * Azure Terraform (Microsoft)  
    * Gitignore (CodeZombie)   
-   * GitHub Pull Request and Issues   
+   * GitHub Pull Request and Issues (GitHub)  
+   * vscode-icons (VSCode Icons Team) 
 ### Create The Terraform Project  
 1. In VS Code do a `Ctrl+Shift+E` to open the **_Explorer_** and navigate to `c:\admin\labs\lab-terra-containerapp` folder   
 2. Create the following files in the folder:   
@@ -186,19 +187,9 @@ provider "azurerm" {
      * Find: **_example_** Replace: **_lab_**        
    
    Add the Ingress code block to the **_azurerm_container_app_** resource, the block should be placed under the **_revision_mode_** line: 
-<div class="warning">
-  <p><strong>Warning:</strong> Your message here</p>
-</div>
 
-.warning {
-  background-color: #fef2c0;
-  border-color: #ffd747;
-  border-radius: 3px;
-  border-width: 1px;
-  border-style: solid;
-  padding: 10px;
-}
-
+> **Warning**
+> This is a warning
 
 ```yaml
 ingress {

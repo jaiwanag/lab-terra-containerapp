@@ -277,7 +277,7 @@ template {
 ### Add terraform.tfvars
 1. Create a **_terraform.tfvars_** file in **_c:\\admin\\labs\\lab-terra-containerapp_**
 2. Add the following code to the file  
-`Image = "nginx:latest"`  
+`image = "nginx:latest"`  
 3. Commit to source control
 4. Run Terrarom plan, then apply the changes:
 ```

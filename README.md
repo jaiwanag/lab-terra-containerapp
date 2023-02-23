@@ -375,14 +375,7 @@ Verify that the follow resources were created your Azure subscription:
     * RBAC: **_contributor_**
 
 #### Configure Terraform to use the Azure storage account as the backend
-1. Create a new file named **_lab-terra-containerapp.tfbackend_** in your Terraform working directory
-2. Add the following contents to the file, replacing the placeholders with your actual values:
-```yaml
-client_id = "<clientid>"
-subscription_id = "<subscriptionId>"
-tenant_id = "<tenantId>"
-```
-3. Update the terraform **_providers.tf_** file with the **_backend_** configuration. This tells Terraform to use the azurerm backend, and to load the configuration from the lab-terra-containerapp.tfbackend file. Here's an example of what your backend configuration will look like:
+1. Update the terraform **_providers.tf_** file with the **_backend_** configuration. This tells Terraform to use the azurerm backend. Here's an example of what your backend configuration will look like:
 ```yaml
 terraform {
   required_providers {
@@ -391,23 +384,25 @@ terraform {
       version = "3.44.1"
     }
   }
+  ///////////////////////////// Add this block <start>
   backend "azurerm" {
     storage_account_name = "infrasa[xxx]"  # <===== replace [xxx] with the numbers at the end of your storage account
     container_name = "tfstate"
     key = "lab-terra-containerapp.tfstate"
     use_azuread_auth = true
-    //Note:  confidential values are stored in the .tfbackend file
   }
 }
- 
+///////////////////////////// Add this block <end>
 provider "azurerm" {
   features {}
 }
 ```
-4. Run **_terraform_** **_init_** in your working directory to initialize the backend and download any required plugins  
-`terraform init -backend-config=aca-terraform.tfbackend`
-5. Add the `*.tfbackend` extension to your gitgnore file
-6. Commit to source control
+> **Note**
+> When using AzureAD for Authentication to Storage you also need to ensure the Storage Blob Data Owner role is assigned.
+1. In order to write the state to the storeage account, you need to add the **_Storage Blob Data Owner_** RBAC role to your user account on the **_infrasa_** storage account
+1. Run **_terraform_** **_init_** in your working directory to initialize the backend and download any required plugins  
+`terraform init -reconfigure"`
+1. Commit to source control
 ## Use GitHub Actions to deploy Terraform
 ### Create GitHub secrets
 AZURE_CREDENTIALS  

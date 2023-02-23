@@ -185,7 +185,21 @@ provider "azurerm" {
    **Labels:**    
      * Find: **_example_** Replace: **_lab_**        
    
-   Add the Ingress code block to the **_azurerm_container_app_** resource, the block should be placed under the **_revision_mode_** line:
+   Add the Ingress code block to the **_azurerm_container_app_** resource, the block should be placed under the **_revision_mode_** line: 
+<div class="warning">
+  <p><strong>Warning:</strong> Your message here</p>
+</div>
+
+.warning {
+  background-color: #fef2c0;
+  border-color: #ffd747;
+  border-radius: 3px;
+  border-width: 1px;
+  border-style: solid;
+  padding: 10px;
+}
+
+
 ```yaml
 ingress {
   target_port = 80
@@ -217,7 +231,7 @@ ingress {
 3. Preview Terraform deployment  
 `terraform plan`  
 4. Apply the changes with 256 simultaneous resource operations  
-`terraform apply -auto-approve -parallelism=256`  
+`terraform apply -parallelism=256`  
 In the Azure portal validate that the resources were created
 ### Login to the Azure portal and verify that the following resources are created:
   * Resource Group:  **_lab-rg_**
@@ -258,7 +272,7 @@ variable "image" {
 template {
   container {
     name   = "examplecontainerapp"
-    image  = var.image
+    image  = var.image            # <=========== Add image variable           
     cpu    = 0.25
     memory = "0.5Gi"
   }

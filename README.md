@@ -186,10 +186,10 @@ provider "azurerm" {
    **Labels:**    
      * Find: **_example_** Replace: **_lab_**        
    
-   Add the Ingress code block to the **_azurerm_container_app_** resource, the block should be placed under the **_revision_mode_** line: 
+   ### Add the Ingress code block to the **_azurerm_container_app_** resource, the block should be placed under the **_revision_mode_** line: 
 
 > **Warning**
-> This is a warning
+> The Terraform Azure Provider for Container Apps has a bug with ingress.  You need to add the ingress after the container app is created.  
 
 ```yaml
 ingress {
@@ -248,6 +248,10 @@ output "resource_group_name" {
 }
 ```
 3. Commit to source control
+4. Apply the changes type:   
+`terrafrom apply`  
+5. To view the output type:  
+`terraform output`
 ### Add variables.tf
 1. Create a **_variables.tf_**  file in **_c:\\admin\\labs\\lab-terra-containerapps_**
 2. Add the following code to the file
@@ -269,12 +273,19 @@ template {
   }
 }
 ```
-4.  Commit to source control
+4. Commit to source control
 ### Add terraform.tfvars
 1. Create a **_terraform.tfvars_** file in **_c:\\admin\\labs\\lab-terra-containerapp_**
 2. Add the following code to the file  
 `Image = "nginx:latest"`  
-3. Commit to source control  
+3. Commit to source control
+4. Run Terrarom plan, then apply the changes:
+```
+terraform plan
+terraform apply -parallelism=256
+```
+5. Verify that the new image was applied  
+   * Azure Portal > Container App > Application Url
 ## Add a Remote Backend for the Terraform State
 #### Azure resources that will be created by the PowerShell script:
 * Create resource group (infra-rg)  

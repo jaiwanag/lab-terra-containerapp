@@ -400,7 +400,7 @@ provider "azurerm" {
 > **Note**
 > When using AzureAD for Authentication to Storage you also need to ensure the Storage Blob Data Owner role is assigned.
 1. To store the state in the storage account, you must assign the **_Storage Blob Data Owner_** RBAC role to your user account on the **_infrasa_** storage account
-1. Run **_terraform_** **_init_** in your working directory to initialize the backend and download any required plugins  
+1. Run **_terraform_** **_init_** in your working directory to initialize the backend   
 `terraform init -reconfigure`
 1. Commit to source control
 ## Use GitHub Actions to deploy Terraform

@@ -290,7 +290,7 @@ terraform apply -parallelism=256
 #### Azure resources that will be created by the PowerShell script:
 * Create resource group (infra-rg)  
 * Create storage account (infrasa)
-  * In the storage account, create a container called **_tfstate_**   
+  * Create a container called **_tfstate_**, in the storeage account  
 * Create Azure AD service principal
   * Grant the service principal **_Storage Blob Data Owner_** permissions to the storage account
   * Grant the service principal **_contributor_** permissions to the subscription.
@@ -362,6 +362,18 @@ $newJson
 ```
 > **_Note: This file contains sensitive information, and should stored in a secure location!!!_**  
 
+Verify that the follow resources were created your Azure subscription:  
+* Resource Group:  **_lab-rg_**
+* Storeage Account:**_infrasaxxx_**
+  * Service Principal: **_s-DevOps-lab_**
+    * RBAC: **_Storage Blob Data Owner_**
+  * Container: **_tfstate_**
+* AAD App Registration:  **_s-DevOps-lab_**  
+* AAD Enterprise Application:  **_s-DevOps-lab_**  
+* Subscription: **_<Your Subscription>_**  
+  * Service Principal: **_s-DevOps-lab_** 
+    * RBAC: **_contributor_**
+
 #### Configure Terraform to use the Azure storage account as the backend
 1. Create a new file named **_lab-terra-containerapp.tfbackend_** in your Terraform working directory
 2. Add the following contents to the file, replacing the placeholders with your actual values:
@@ -380,7 +392,7 @@ terraform {
     }
   }
   backend "azurerm" {
-    storage_account_name = "infrasa"
+    storage_account_name = "infrasa[xxx]"  # <===== replace [xxx] with the numbers at the end of your storage account
     container_name = "tfstate"
     key = "lab-terra-containerapp.tfstate"
     use_azuread_auth = true

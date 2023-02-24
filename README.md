@@ -410,13 +410,12 @@ provider "azurerm" {
 1. Commit to source control
 ## Use GitHub Actions to deploy Terraform
 ### Create GitHub secrets
-AZURE_CREDENTIALS  
-(use the information from the saved service principal output)
 1. Go to your GitHub repository and navigate to the "Settings" tab.
 2. Click on "Secrets" on the left-hand side.
 3. Click on "New repository secret".
 4. In the "Name" field, enter a name for the secret, such as "AZURE_CREDENTIALS".
-5. In the "Value" field, paste in the JSON object:
+5. In the "Value" field, paste service principal output you saved earlier:  
+(see example below)
 ```json
 {
 "clientId": "xxxxxxxxxx",
@@ -425,21 +424,22 @@ AZURE_CREDENTIALS
 "tenantId": "xxxxxxxxxx"
 }
 ```
-6. Click on "Add secret"
-Now you have created a GitHub secret for Azure using the provided JSON object. You can use this secret in your GitHub Actions workflows to authenticate and interact with your Azure resources.
+6. Click "Add secret"  
 
-TF_BACKEND_CONFIG  
-1. Create a new secret in your GitHub repository by going to "Settings" > "Secrets" and clicking on "New secret".  
-2. Name the secret TF_BACKEND_CONFIG and paste the contents of your lab-terra-containerapp.tfbackend file as the value.   
+  Now you have created a GitHub secret for Azure using the provided JSON object. You can use this secret in your GitHub Actions workflows to authenticate and interact with your Azure resources.
 
-The contents should look this.
+~~TF_BACKEND_CONFIG~~  
+~~1. Create a new secret in your GitHub repository by going to "Settings" > "Secrets" and clicking on "New secret".~~  
+~~2. Name the secret TF_BACKEND_CONFIG and paste the contents of your lab-terra-containerapp.tfbackend file as the value.~~     
+
+~~The contents should look this.~~  
 ```yaml
 client_id = "xxxxxxxxxx"
 subscription_id = "xxxxxxxxxx"
 tenant_id = "xxxxxxxxxx"
 ```
-3. Click on "Add secret"
-This will be used to pass the contents of the TF_BACKEND_CONFIG secret as the backend-config parameter to the terraform init command in the workflow.
+~~3. Click on "Add secret"~~  
+~~This will be used to pass the contents of the TF_BACKEND_CONFIG secret as the backend-config parameter to the terraform init command in the workflow.~~
 ### Create GitHub Action
 
 1. In the lab-terra-containerapp project in VS Code.  Create a folder call .github
@@ -476,7 +476,8 @@ jobs:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
     - name: Terraform Init
-      run: terraform init -backend-config=<(echo "$TF_BACKEND_CONFIG")
+      # -backend-config=<(echo "$TF_BACKEND_CONFIG")
+      run: terraform init
 
     - name: Terraform Plan
       run: terraform plan -out=tfplan

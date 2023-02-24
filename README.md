@@ -1,5 +1,5 @@
 # Summary
-This lab outlines the steps to install and configure the necessary software and tools to create a Terraform project for learing Infrastructure as Code (IaC) and source control (Git/GitHub).  This project uses IaC to deploy a container app in Azure.
+This lab outlines the steps to install and configure the necessary software and tools to create a Terraform project for learning Infrastructure as Code (IaC) and source control (Git/GitHub).  This project uses IaC to deploy a container app in Azure.
 
 ### Skills that will be learned:
 1. Azure
@@ -254,7 +254,7 @@ output "resource_group_name" {
 ```
 3. Commit to source control
 4. Apply the changes type:   
-`terrafrom apply`  
+`terraform apply`  
 5. To view the output type:  
 `terraform output`
 ### Add variables.tf
@@ -284,7 +284,7 @@ template {
 2. Add the following code to the file  
 `image = "nginx:latest"`  
 3. Commit to source control
-4. Run Terrarom plan, then apply the changes:
+4. Run Terraform plan, then apply the changes:
 ```
 terraform plan
 terraform apply -parallelism=256
@@ -295,7 +295,7 @@ terraform apply -parallelism=256
 #### Azure resources that will be created by the PowerShell script:
 * Create resource group (infra-rg)  
 * Create storage account (infrasa)
-  * Create a container called **_tfstate_**, in the storeage account  
+  * Create a container called **_tfstate_**, in the storage account  
 * Create Azure AD service principal
   * Grant the service principal **_Storage Blob Data Owner_** permissions to the storage account
   * Grant the service principal **_contributor_** permissions to the subscription.
@@ -369,7 +369,7 @@ $newJson
 
 Verify that the follow resources were created your Azure subscription:  
 * Resource Group:  **_lab-rg_**
-* Storeage Account:**_infrasaxxx_**
+* Storage Account:**_infrasaxxx_**
   * Service Principal: **_s-DevOps-lab_**
     * RBAC: **_Storage Blob Data Owner_**
   * Container: **_tfstate_**
@@ -514,7 +514,7 @@ The GitHub Actions is set to use the **_workflow_dispatch_** event in the **_act
 * Add authentication to the container app
 * Branch the project
 * Make updates and merge
-* Create a custom docker container and store in Azure Container Regestry
+* Create a custom docker container and store in Azure Container Registry
 * GitHub actions to deploy the container to the Container App
 ## References:
 Use GitHub Actions to connect to Azure:   

@@ -411,8 +411,8 @@ provider "azurerm" {
 ## Use GitHub Actions to deploy Terraform
 ### Create GitHub secrets
 1. Go to your GitHub repository and navigate to the "Settings" tab.
-2. Click on "Secrets" on the left-hand side.
-3. Click on "New repository secret".
+2. In the dropdown for "Secrets and variables" on the left-hand side, select **_Actions_**
+3. Click **_New repository secret_**
 4. In the "Name" field, enter a name for the secret, such as "AZURE_CREDENTIALS".
 5. In the "Value" field, paste service principal output you saved earlier:  
 (see example below)

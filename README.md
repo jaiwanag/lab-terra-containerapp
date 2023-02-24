@@ -213,6 +213,9 @@ ingress {
 `az account show`  
 2. To Login to Azure type the following:  
 `az login`  
+> **Note**
+> To change the subscription enter the following command:  
+> `az account set --subscription "<yourSubscriptionName>"`
 
 ### Terraform initialize, plan, and deploy
 1. Initialize directory, pull down providers  

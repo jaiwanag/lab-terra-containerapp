@@ -216,7 +216,7 @@ ingress {
 > **Note**
 > To list all your subscriptions:  
 > `az account list -o table`  
-> To switch to a different subscription, enter the following command:  
+> To switch to a different subscription:  
 > `az account set --subscription "<yourSubscriptionName>"`
 
 ### Terraform initialize, plan, and deploy

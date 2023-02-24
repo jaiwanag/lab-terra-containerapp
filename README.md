@@ -214,6 +214,8 @@ ingress {
 2. To Login to Azure type the following:  
 `az login`  
 > **Note**
+> To list all your subscriptions:  
+> `az account list -o table`  
 > To switch to a different subscription, enter the following command:  
 > `az account set --subscription "<yourSubscriptionName>"`
 

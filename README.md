@@ -437,7 +437,7 @@ To create a GitHub secret:
 1. Create a new secret in your GitHub repository by going to "Settings" > "Secrets" and clicking on "New secret".
 2. Name the secret **_AZURE_CLIENT_ID_** and paste the value for the clientId from your the saved output file.  
 
-   <img src=media/ghSecret.png alt="ghSecret" width="80%" title="ghSecret" />
+   <img src=media/ghSecret.png alt="ghSecret" title="ghSecret" />
 
 ~~3. Click on "Add secret"~~  
 ~~This will be used to pass the contents of the TF_BACKEND_CONFIG secret as the backend-config parameter to the terraform init command in the workflow.~~

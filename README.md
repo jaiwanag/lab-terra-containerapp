@@ -426,18 +426,19 @@ provider "azurerm" {
 ```
 6. Click "Add secret"  
 
-  Now you have created a GitHub secret for Azure using the provided JSON object. You can use this secret in your GitHub Actions workflows to authenticate and interact with your Azure resources.
+  Now you have created a GitHub secrets for Azure using the provided JSON object. You can use the secrets in your GitHub Actions workflows to authenticate and interact with your Azure resources.
 
-~~TF_BACKEND_CONFIG~~  
-~~1. Create a new secret in your GitHub repository by going to "Settings" > "Secrets" and clicking on "New secret".~~  
-~~2. Name the secret TF_BACKEND_CONFIG and paste the contents of your lab-terra-containerapp.tfbackend file as the value.~~     
+* Create the follow GitHub secrets:  
+  * AZURE_CLIENT_ID  
+  * AZURE_SUBSCRIPTION_ID
+  * AZURE_TENANT_ID
 
-~~The contents should look this.~~  
-```yaml
-client_id = "xxxxxxxxxx"
-subscription_id = "xxxxxxxxxx"
-tenant_id = "xxxxxxxxxx"
-```
+To create a GitHub secret:
+1. Create a new secret in your GitHub repository by going to "Settings" > "Secrets" and clicking on "New secret".
+2. Name the secret **_AZURE_CLIENT_ID_** and paste the value for the clientId from your the saved output file.  
+
+   <img src=media/ghSecret.png alt="ghSecret" width="80%" title="ghSecret" />
+
 ~~3. Click on "Add secret"~~  
 ~~This will be used to pass the contents of the TF_BACKEND_CONFIG secret as the backend-config parameter to the terraform init command in the workflow.~~
 ### Create GitHub Action

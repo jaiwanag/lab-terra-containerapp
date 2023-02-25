@@ -297,7 +297,7 @@ terraform apply -parallelism=256
 * Create storage account (infrasa)
   * Create a container called **_tfstate_**, in the storage account  
 * Create Azure AD service principal
-  * Grant the service principal **_Storage Blob Data Owner_** permissions to the storage account
+  * ~~Grant the service principal **_Storage Blob Data Owner_** permissions to the storage account~~
   * Grant the service principal **_contributor_** permissions to the subscription.
 
 Past the following code in a PowerShell terminal to create the resources above
@@ -331,7 +331,7 @@ az storage container create --name tfstate --account-name `$storageAccountName
 `$appId = az ad sp show --id `$(az ad sp list --display-name `$spName --query '[].appId' -o tsv) --query appId -o tsv
 
 # Grant the account Storage Blob Data Owner to the storage account
-az role assignment create --assignee `$appId --role `"Storage Blob Data Owner`" --scope /subscriptions/`$subscriptionId/resourceGroups/`$resourceGroupName/providers/Microsoft.Storage/storageAccounts/`$storageAccountName
+#az role assignment create --assignee `$appId --role `"Storage Blob Data Owner`" --scope /subscriptions/`$subscriptionId/resourceGroups/`$resourceGroupName/providers/Microsoft.Storage/storageAccounts/`$storageAccountName
 
 # Grant the account contributor to the subscription
 az role assignment create --assignee `$appId --role `"Contributor`" --scope /subscriptions/`$subscriptionId
@@ -370,8 +370,8 @@ $newJson
 Verify that the follow resources were created your Azure subscription:  
 * Resource Group:  **_lab-rg_**
 * Storage Account:**_infrasaxxx_**
-  * Service Principal: **_s-DevOps-lab_**
-    * RBAC: **_Storage Blob Data Owner_**
+  * ~~Service Principal: **_s-DevOps-lab_**~~
+    * ~~RBAC: **_Storage Blob Data Owner_**~~
   * Container: **_tfstate_**
 * AAD App Registration:  **_s-DevOps-lab_**  
 * AAD Enterprise Application:  **_s-DevOps-lab_**  
@@ -394,7 +394,7 @@ terraform {
     storage_account_name = "infrasa[xxx]"  # <===== replace [xxx] with the numbers at the end of your storage account
     container_name = "tfstate"
     key = "lab-terra-containerapp.tfstate"
-    use_azuread_auth = true
+    # use_azuread_auth = true              
   }
 }
 ///////////////////////////// Add this block <end>
@@ -402,9 +402,9 @@ provider "azurerm" {
   features {}
 }
 ```
-> **Note**
-> When using AzureAD for Authentication to Storage you also need to ensure the Storage Blob Data Owner role is assigned.
-1. To store the state in the storage account, you must assign the **_Storage Blob Data Owner_** RBAC role to your user account on the **_infrasa_** storage account
+> ~~**Note**~~
+> ~~When using AzureAD for Authentication to Storage you also need to ensure the Storage Blob Data Owner role is assigned.~~
+1. ~~To store the state in the storage account, you must assign the **_Storage Blob Data Owner_** RBAC role to your user account on the **_infrasa_** storage account~~
 1. Run **_terraform_** **_init_** in your working directory to initialize the backend   
 `terraform init -reconfigure`
 1. Commit to source control

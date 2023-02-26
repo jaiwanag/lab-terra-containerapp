@@ -393,8 +393,7 @@ terraform {
   backend "azurerm" {
     storage_account_name = "infrasa[xxx]"  # <===== replace [xxx] with the numbers at the end of your storage account
     container_name = "tfstate"
-    key = "lab-terra-containerapp.tfstate"
-    # use_azuread_auth = true              
+    key = "lab-terra-containerapp.tfstate"            
   }
 }
 ///////////////////////////// Add this block <end>
@@ -432,6 +431,7 @@ provider "azurerm" {
   * AZURE_CLIENT_ID  
   * AZURE_SUBSCRIPTION_ID
   * AZURE_TENANT_ID
+  * AZURE_CLIENT_SECRET
 
 To create a GitHub secret:
 1. Create a new secret in your GitHub repository by going to "Settings" > "Secrets" and clicking on "New secret".
@@ -439,8 +439,9 @@ To create a GitHub secret:
 
    <img src=media/ghSecret.png alt="ghSecret" title="ghSecret" />
 
-~~3. Click on "Add secret"~~  
-~~This will be used to pass the contents of the TF_BACKEND_CONFIG secret as the backend-config parameter to the terraform init command in the workflow.~~
+3. Click on "Add secret"
+4. Repeat this for **_AZURE_SUBSCRIPTION_ID_**, **_AZURE_TENANT_ID_** and **_AZURE_CLIENT_SECRET_**.
+
 ### Create GitHub Action
 
 1. In the lab-terra-containerapp project in VS Code.  Create a folder call .github
@@ -462,36 +463,52 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    # Checkout the repository to the GitHub Actions runner
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
+    # Install the latest version of Terraform CLI
     - name: Download Terraform
       run: |
         curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
         sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
         sudo apt-get update && sudo apt-get install terraform
 
+    # Login to Azure
     - name: Azure Login
       uses: azure/login@v1
       with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
+        #creds: ${{ secrets.AZURE_CREDENTIALS }}
+        creds: '{"clientId":"${{ secrets.AZURE_CLIENT_ID }}","clientSecret":"${{ secrets.AZURE_CLIENT_SECRET }}","subscriptionId":"${{ secrets.AZURE_SUBSCRIPTION_ID }}","tenantId":"${{ secrets.AZURE_TENANT_ID }}"}'
 
+    # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc
     - name: Terraform Init
-      # -backend-config=<(echo "$TF_BACKEND_CONFIG")
-      run: terraform init
+      run: | 
+        terraform init \
+          -backend-config="client_id=${{ secrets.AZURE_CLIENT_ID }}" \
+          -backend-config="subscription_id=${{ secrets.AZURE_SUBSCRIPTION_ID }}" \
+          -backend-config="tenant_id=${{ secrets.AZURE_TENANT_ID }}" \
+          -backend-config="client_secret=${{ secrets.AZURE_CLIENT_SECRET}}"
 
+    # Checks that all Terraform configuration files adhere to a canonical format
+    - name: Terraform Format
+      run: terraform fmt -check
+
+    # Generates an execution plan for Terraform
     - name: Terraform Plan
-      run: terraform plan -out=tfplan
+      run: terraform plan -input=false -out=tfplan
 
+    # Upload the plan as an artifact
     - name: Archive Terraform Plan
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: tfplan
         path: tfplan
 
+    # Deploys the resources
     - name: Terraform Apply
       #if: success() && github.event_name == 'push'
-      run: terraform apply -auto-approve tfplan
+      run: terraform apply -input=false -auto-approve tfplan
 ```
 > This code sets up a GitHub Actions workflow to deploy an Azure infrastructure using Terraform. It downloads Terraform, log in to Azure, and generate a Terraform plan. The plan is then archived as an artifact and used to apply the changes to the Azure infrastructure.
 5. Commit to source control
@@ -512,6 +529,7 @@ The GitHub Actions is set to use the **_workflow_dispatch_** event in the **_act
     * Owner = "your name"
     * project = lab-terra-containerapp
 ## Future work:
+* Add OIDC to the Azure login for the GitHub Action
 * Add authentication to the container app
 * Branch the project
 * Make updates and merge

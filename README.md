@@ -449,13 +449,19 @@ To create a GitHub secret:
 ```yaml
 name: Terraform Azure Deployment
 
-#on:
-#  push:
-#    branches:
-#      - main
 on:
   workflow_dispatch:
-
+  push:
+    #branches:
+    #  - main
+    # Pushing a change to the following files willn't initiate a build
+    paths-ignore:  
+      - "**.md"
+      - ".gitignore"
+      - "**.hcl"
+env:
+   TF_DEPLOY: 'apply'   # apply = terraform apply     destroy = terraform destroy
+   
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -505,8 +511,13 @@ jobs:
 
     # Deploys the resources
     - name: Terraform Apply
-      #if: success() && github.event_name == 'push'
+      if: ${{ env.TF_DEPLOY == 'apply' }}
       run: terraform apply -input=false -auto-approve tfplan
+
+    # Destroy environment
+    - name: Terraform Destroy
+      if: ${{ env.TF_DEPLOY == 'destroy' }}
+      run: terraform destroy -auto-approve
 ```
 > This code sets up a GitHub Actions workflow to deploy an Azure infrastructure using Terraform. It downloads Terraform, log in to Azure, and generate a Terraform plan. The plan is then archived as an artifact and used to apply the changes to the Azure infrastructure.
 5. Commit to source control

@@ -188,15 +188,13 @@ provider "azurerm" {
    
    ### Add the Ingress code block to the **_azurerm_container_app_** resource, the block should be placed under the **_revision_mode_** line: 
 
-> **Warning**
-> The Terraform Azure Provider for Container Apps has a bug with ingress.  You need to add the ingress after the container app is created.  
-
 ```yaml
 ingress {
   target_port = 80
   external_enabled = true
   traffic_weight {
     percentage = 100
+    latest_revision = true
   }
 }
 ```
